@@ -1,0 +1,58 @@
+{
+  "records": {
+    "r8": {
+      "version": "1.1",
+      "repeat": {
+        "count": "3",
+        "duration": "0",
+        "sel": "count"
+      },
+      "timestamp": "1754312569333",
+      "interval": "0",
+      "speed": "1",
+      "title": "B그룹대기시간",
+      "events": [
+        {
+          "position": {
+            "x": "0",
+            "y": "0"
+          },
+          "ms": "1259400",
+          "type": "27",
+          "detail": "65537",
+          "data": "0"
+        },
+        {
+          "position": {
+            "x": "0",
+            "y": "0"
+          },
+          "ms": "1259500",
+          "type": "27",
+          "detail": "3221291009",
+          "data": "0"
+        },
+        {
+          "position": {
+            "x": "0",
+            "y": "0"
+          },
+          "ms": "1259900",
+          "type": "27",
+          "detail": "65537",
+          "data": "0"
+        },
+        {
+          "position": {
+            "x": "0",
+            "y": "0"
+          },
+          "ms": "1260000",
+          "type": "27",
+          "detail": "3221291009",
+          "data": "0"
+        }
+      ]
+    }
+  }
+}

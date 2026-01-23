@@ -1,0 +1,58 @@
+{
+    "records": {
+        "r8": {
+            "version": "1.1",
+            "repeat": {
+                "count": "3",
+                "duration": "0",
+                "sel": "count"
+            },
+            "timestamp": "1754312569333",
+            "interval": "0",
+            "speed": "1",
+            "title": "10분대기",
+            "events": [
+                {
+                    "position": {
+                        "x": "0",
+                        "y": "0"
+                    },
+                    "ms": "619400",
+                    "type": "27",
+                    "detail": "65537",
+                    "data": "0"
+                },
+                {
+                    "position": {
+                        "x": "0",
+                        "y": "0"
+                    },
+                    "ms": "619500",
+                    "type": "27",
+                    "detail": "3221291009",
+                    "data": "0"
+                },
+                {
+                    "position": {
+                        "x": "0",
+                        "y": "0"
+                    },
+                    "ms": "619900",
+                    "type": "27",
+                    "detail": "65537",
+                    "data": "0"
+                },
+                {
+                    "position": {
+                        "x": "0",
+                        "y": "0"
+                    },
+                    "ms": "620000",
+                    "type": "27",
+                    "detail": "3221291009",
+                    "data": "0"
+                }
+            ]
+        }
+    }
+}

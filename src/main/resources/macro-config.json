@@ -1,0 +1,26 @@
+{
+  "currentEvent": {
+    "sidun": "sidun_event_christmas",
+    "dungeon": "event_dugeon_icequeen"
+  },
+  "availableEvents": {
+    "sidun": [
+      "sidun_event_christmas",
+      "sidun_event_childday",
+      "sidun_event_thanksgiving1",
+      "sidun_event_thanksgiving2",
+      "sidun_event_adenbaseball",
+      "sidun_event_chistmassquare",
+      "sidun_event_gumiho",
+      "sidun_event_rabbitgirl",
+      "sidun_event_esemgiftbox",
+      "sidun_event_rabiitgift",
+      "sidun_event_pandoragift",
+      "sidun_event_gold_slime",
+      "sidun_event_swamp"
+    ],
+    "dungeon": [
+      "event_dugeon_icequeen"
+    ]
+  }
+}

@@ -41,13 +41,19 @@ public class Config
 	private String character;
 	private String group;
 	private String scheduleTime;
-	private String event;
+	private String sidunEvent;        // 시던 이벤트 스크립트명 (예: sidun_event_christmas)
 	private String returnHomeKey;
 	private String returnKey;
 	private String dragonKey;
 	private boolean scheduleOnly;
 	private int mainCharRepeat;
-	private String specialDungeon;
+	private String eventDungeon;      // 이벤트 던전 스크립트명 (예: event_dugeon_icequeen)
+
+	// 추가 필드 (JSON 파라미터명과 일치)
+	private int isSubCharacter;
+	private String waitTime;
+	private boolean potionEvent;      // 물약 이벤트 여부 (weekend용)
+	private String worldDungeon;      // 월드 던전명 (weekend용: tebe, atlan, tical)
 
 	// private 생성자 (Builder를 통해서만 생성)
 	private Config() {
@@ -57,8 +63,14 @@ public class Config
 		this.dragonKey = "button_10";
 		this.scheduleOnly = false;
 		this.mainCharRepeat = 0;
-		this.event = "noevent";
-		this.specialDungeon = "nospecialdugeon";
+		this.sidunEvent = "";
+		this.eventDungeon = "";
+
+		// 추가 필드 기본값
+		this.isSubCharacter = 0;
+		this.waitTime = "";
+		this.potionEvent = false;
+		this.worldDungeon = "";
 	}
 
 	// Builder 생성
@@ -91,13 +103,17 @@ public class Config
 			return this;
 		}
 
-		public Builder event(String event) {
-			config.event = event;
+		public Builder sidunEvent(String sidunEvent) {
+			if(sidunEvent == null || "".equals(sidunEvent)) {
+				config.sidunEvent = "event";
+			} else {
+				config.sidunEvent = sidunEvent;
+				}
 			return this;
 		}
 
-		public Builder specialDungeon(String specialDungeon) {
-			config.specialDungeon = specialDungeon;
+		public Builder eventDungeon(String eventDungeon) {
+			config.eventDungeon = eventDungeon;
 			return this;
 		}
 
@@ -126,6 +142,26 @@ public class Config
 			return this;
 		}
 
+		public Builder isSubCharacter(int isSubCharacter) {
+			config.isSubCharacter = isSubCharacter;
+			return this;
+		}
+
+		public Builder waitTime(String waitTime) {
+			config.waitTime = waitTime;
+			return this;
+		}
+
+		public Builder potionEvent(boolean potionEvent) {
+			config.potionEvent = potionEvent;
+			return this;
+		}
+
+		public Builder worldDungeon(String worldDungeon) {
+			config.worldDungeon = worldDungeon;
+			return this;
+		}
+
 		public Config build() {
 			return config;
 		}
@@ -151,38 +187,38 @@ public class Config
 		this.dragonKey = dragonKey;
 	}
 
-	public Config(int mainCharRepeat, String scheduleTime, String event, String specialDungeon) {
+	public Config(int mainCharRepeat, String scheduleTime, String sidunEvent, String eventDungeon) {
 		this();
 		this.mainCharRepeat = mainCharRepeat;
 		this.scheduleTime = scheduleTime;
-		this.event = event;
-		this.specialDungeon = specialDungeon;
+		this.sidunEvent = sidunEvent;
+		this.eventDungeon = eventDungeon;
 	}
 
-	public Config(String character, String group, String scheduleTime, String event) {
+	public Config(String character, String group, String scheduleTime, String sidunEvent) {
 		this();
 		this.character = character;
 		this.group = group;
 		this.scheduleTime = scheduleTime;
-		this.event = event;
+		this.sidunEvent = sidunEvent;
 	}
 
-	public Config(String character, String group, String scheduleTime, String event, String specialDungeon) {
+	public Config(String character, String group, String scheduleTime, String sidunEvent, String eventDungeon) {
 		this();
 		this.character = character;
 		this.group = group;
 		this.scheduleTime = scheduleTime;
-		this.event = event;
-		this.specialDungeon = specialDungeon;
+		this.sidunEvent = sidunEvent;
+		this.eventDungeon = eventDungeon;
 	}
 
-	public Config(String character, String group, String scheduleTime, String event,
+	public Config(String character, String group, String scheduleTime, String sidunEvent,
 			String returnHomeKey, String returnKey, String dragonKey) {
 		this();
 		this.character = character;
 		this.group = group;
 		this.scheduleTime = scheduleTime;
-		this.event = event;
+		this.sidunEvent = sidunEvent;
 		this.returnHomeKey = returnHomeKey;
 		this.returnKey = returnKey;
 		this.dragonKey = dragonKey;
@@ -198,16 +234,8 @@ public class Config
 		return group;
 	}
 
-	public String getEvent() {
-		if ("noevent".equals(event)) {
-			return "";
-		} else {
-			return "event";
-		}
-	}
-
-	public String getEventRaw() {
-		return event;
+	public String getSidunEvent() {
+		return sidunEvent;
 	}
 
 	public String getScheduleTime() {
@@ -246,8 +274,24 @@ public class Config
 		return mainCharRepeat;
 	}
 
-	public String getSpecialDungeon() {
-		return specialDungeon;
+	public String getEventDungeon() {
+		return eventDungeon;
+	}
+
+	public int getIsSubCharacter() {
+		return isSubCharacter;
+	}
+
+	public String getWaitTime() {
+		return waitTime;
+	}
+
+	public boolean isPotionEvent() {
+		return potionEvent;
+	}
+
+	public String getWorldDungeon() {
+		return worldDungeon;
 	}
 
 	// === 체크 메서드 ===
@@ -264,13 +308,12 @@ public class Config
 		return !"".equals(getScheduleTime());
 	}
 
-	public boolean hasEvent() {
-		return event != null && !"noevent".equals(event) && !"okevnet".equals(event) && !"".equals(event);
+	public boolean hasSidunEvent() {
+		return sidunEvent != null && !sidunEvent.isEmpty();
 	}
 
-	public boolean hasSpecialDungeon() {
-		return specialDungeon != null && !"nospecialdugeon".equals(specialDungeon)
-			&& !"okevnet".equals(specialDungeon) && !"".equals(specialDungeon);
+	public boolean hasEventDungeon() {
+		return eventDungeon != null && !eventDungeon.isEmpty();
 	}
 
 	// === Setter 메서드 ===
@@ -287,8 +330,8 @@ public class Config
 		this.scheduleTime = scheduleTime;
 	}
 
-	public void setEvent(String event) {
-		this.event = event;
+	public void setSidunEvent(String sidunEvent) {
+		this.sidunEvent = sidunEvent;
 	}
 
 	public void setReturnHomeKey(String returnHomeKey) {

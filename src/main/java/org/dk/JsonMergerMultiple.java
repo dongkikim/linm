@@ -99,15 +99,10 @@ public class JsonMergerMultiple {
             builder.scheduleOnly(configNode.get("scheduleOnly").asBoolean());
         }
 
-        // 이벤트 설정
+        // 이벤트 설정 (useCurrentEvent: true인 경우 macro-config.json에서 현재 이벤트 사용)
         if (configNode.has("useCurrentEvent") && configNode.get("useCurrentEvent").asBoolean()) {
-            builder.event(sidunEvent);
-            builder.specialDungeon(dungeonEvent);
-        } else if (configNode.has("event")) {
-            builder.event(configNode.get("event").asText());
-        }
-        if (configNode.has("specialDungeon")) {
-            builder.specialDungeon(configNode.get("specialDungeon").asText());
+            builder.sidunEvent(sidunEvent);
+            builder.eventDungeon(dungeonEvent);
         }
 
         // 키 설정
@@ -119,6 +114,20 @@ public class JsonMergerMultiple {
         }
         if (configNode.has("dragonKey")) {
             builder.dragonKey(configNode.get("dragonKey").asText());
+        }
+
+        // 추가 필드 (JSON 파라미터명과 일치)
+        if (configNode.has("isSubCharacter")) {
+            builder.isSubCharacter(configNode.get("isSubCharacter").asInt());
+        }
+        if (configNode.has("waitTime")) {
+            builder.waitTime(configNode.get("waitTime").asText());
+        }
+        if (configNode.has("potionEvent")) {
+            builder.potionEvent(configNode.get("potionEvent").asBoolean());
+        }
+        if (configNode.has("worldDungeon")) {
+            builder.worldDungeon(configNode.get("worldDungeon").asText());
         }
 
         return builder.build();
@@ -136,16 +145,7 @@ public class JsonMergerMultiple {
             case "scheduleOnly":
                 return ScriptBuilder.makeScheduleOnly(config);
             case "weekendAll":
-                int isSubChar = configNode.get("isSubCharacter").asInt();
-                String waitTime = configNode.get("waitTime").asText();
-                boolean isEvent = configNode.has("isEvent") && configNode.get("isEvent").asBoolean();
-                return ScriptBuilder.makeWeekendAll(isSubChar, waitTime, isEvent);
-            case "weekendHunt":
-                String dungeonName = configNode.get("dungeonName").asText();
-                int isSubChar2 = configNode.get("isSubCharacter").asInt();
-                String waitTime2 = configNode.get("waitTime").asText();
-                boolean isEvent2 = configNode.has("isEvent") && configNode.get("isEvent").asBoolean();
-                return ScriptBuilder.makeWeekendHunt(dungeonName, isSubChar2, waitTime2, isEvent2);
+                return ScriptBuilder.makeWeekendAll(config);
             default:
                 System.out.println("알 수 없는 스크립트 타입: " + type);
                 return new String[0];

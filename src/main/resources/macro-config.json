@@ -1,7 +1,7 @@
 {
   "currentEvent": {
-    "sidun": "sidun_event_christmas",
-    "dungeon": "event_dugeon_icequeen"
+    "sidun": "event",
+    "dungeon": ""
   },
   "availableEvents": {
     "sidun": [

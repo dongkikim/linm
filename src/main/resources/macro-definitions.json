@@ -1,60 +1,32 @@
 {
   "macros": {
     "main": [
-      {"name": "main13", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "00h"}},
-      {"name": "main12", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "00h"}},
-      {"name": "main11", "type": "mainCharacter", "config": {"mainCharRepeat": 11, "scheduleTime": "00h"}},
-      {"name": "main10", "type": "mainCharacter", "config": {"mainCharRepeat": 10, "scheduleTime": "00h"}},
-      {"name": "main9", "type": "mainCharacter", "config": {"mainCharRepeat": 9, "scheduleTime": "00h"}},
+      {"name": "main13", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "01m"}},
+      {"name": "main12", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "01m"}},
+      {"name": "main11", "type": "mainCharacter", "config": {"mainCharRepeat": 11, "scheduleTime": "01m"}},
+      {"name": "main10", "type": "mainCharacter", "config": {"mainCharRepeat": 10, "scheduleTime": "01m"}},
+      {"name": "main9", "type": "mainCharacter", "config": {"mainCharRepeat": 9, "scheduleTime": "01m"}},
 
-      {"name": "main13_10min", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "10m"}},
-      {"name": "main12_10min", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "10m"}},
+      {"name": "main13_event", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "01m", "useCurrentEvent": true}},
+      {"name": "main12_event", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "01m", "useCurrentEvent": true}},
+      {"name": "main11_event", "type": "mainCharacter", "config": {"mainCharRepeat": 11, "scheduleTime": "01m", "useCurrentEvent": true}},
+      {"name": "main10_event", "type": "mainCharacter", "config": {"mainCharRepeat": 10, "scheduleTime": "01m", "useCurrentEvent": true}},
+      {"name": "main9_event", "type": "mainCharacter", "config": {"mainCharRepeat": 9, "scheduleTime": "01m", "useCurrentEvent": true}}
 
-      {"name": "main13_3min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "03m", "useCurrentEvent": true}},
-      {"name": "main12_3min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "03m", "useCurrentEvent": true}},
-
-      {"name": "main13_event", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "00h", "useCurrentEvent": true}},
-      {"name": "main12_event", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "00h", "useCurrentEvent": true}},
-
-      {"name": "main13_10min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "10m", "useCurrentEvent": true}},
-      {"name": "main12_10min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "10m", "useCurrentEvent": true}},
-
-      {"name": "main13_1min", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "01m"}},
-      {"name": "main12_1min", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "01m"}},
-      {"name": "main11_1min", "type": "mainCharacter", "config": {"mainCharRepeat": 11, "scheduleTime": "01m"}},
-      {"name": "main10_1min", "type": "mainCharacter", "config": {"mainCharRepeat": 10, "scheduleTime": "01m"}},
-      {"name": "main9_1min", "type": "mainCharacter", "config": {"mainCharRepeat": 9, "scheduleTime": "01m"}},
-
-      {"name": "main13_1min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "01m", "event": "okevnet"}},
-      {"name": "main12_1min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "01m", "event": "okevnet"}},
-      {"name": "main11_1min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 11, "scheduleTime": "01m", "event": "okevnet"}},
-      {"name": "main10_1min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 10, "scheduleTime": "01m", "event": "okevnet"}},
-      {"name": "main9_1min_event", "type": "mainCharacter", "config": {"mainCharRepeat": 9, "scheduleTime": "01m", "event": "okevnet"}}
-    ],
-
-    "main_scheduleOnly": [
-      {"name": "main13_only_schedule_1hour", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "01h", "scheduleOnly": true}},
-      {"name": "main13_only_schedule_30분", "type": "mainCharacter", "config": {"mainCharRepeat": 13, "scheduleTime": "30m", "scheduleOnly": true}},
-      {"name": "main12_only_schedule_1hour", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "01h", "scheduleOnly": true}},
-      {"name": "main12_only_schedule_30분", "type": "mainCharacter", "config": {"mainCharRepeat": 12, "scheduleTime": "30m", "scheduleOnly": true}}
     ],
 
     "sub_groupA": [
       {"name": "sub_1_groupA_1hour", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "01h"}},
       {"name": "sub_1_groupA", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "00h"}},
-      {"name": "sub_1_groupA_1hour_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "01h", "useCurrentEvent": true}},
-      {"name": "sub_1_groupA_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "00h", "useCurrentEvent": true}},
-      {"name": "sub_1_groupA_1hour_event", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "01h", "event": "okevnet"}},
-      {"name": "sub_1_groupA_event", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "00h", "event": "okevnet"}}
+      {"name": "sub_1_groupA_1hour_event", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "01h"}},
+      {"name": "sub_1_groupA_event", "type": "subCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "00h"}}
     ],
 
     "sub_groupB": [
       {"name": "sub_1_groupB_1hour", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "01h"}},
       {"name": "sub_1_groupB", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "00h"}},
-      {"name": "sub_1_groupB_1hour_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "01h", "useCurrentEvent": true}},
-      {"name": "sub_1_groupB_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "00h", "useCurrentEvent": true}},
-      {"name": "sub_1_groupB_1hour_event", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "01h", "event": "okevnet"}},
-      {"name": "sub_1_groupB_event", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "00h", "event": "okevnet"}}
+      {"name": "sub_1_groupB_1hour_event", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "01h"}},
+      {"name": "sub_1_groupB_event", "type": "subCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "00h"}}
     ],
 
     "sub_other": [
@@ -62,24 +34,29 @@
       {"name": "sub_2", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h"}},
       {"name": "sub_3_1hour", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h"}},
       {"name": "sub_3", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h"}},
-      {"name": "sub_2_1hour_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "01h", "useCurrentEvent": true}},
-      {"name": "sub_2_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h", "useCurrentEvent": true}},
-      {"name": "sub_3_1hour_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h", "useCurrentEvent": true}},
-      {"name": "sub_3_eventchristmas_icequeen", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h", "useCurrentEvent": true}},
-      {"name": "sub_2_1hour_event", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "01h", "event": "okevnet"}},
-      {"name": "sub_2_event", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h", "event": "okevnet"}},
-      {"name": "sub_3_1hour_event", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h", "event": "okevnet"}},
-      {"name": "sub_3_event", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h", "event": "okevnet"}}
+      {"name": "sub_2_1hour_event", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "01h"}},
+      {"name": "sub_2_event", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h"}},
+      {"name": "sub_3_1hour_event", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h"}},
+      {"name": "sub_3_event", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h"}}
     ],
 
     "world": [
-      {"name": "main_world", "type": "weekendAll", "config": {"isSubCharacter": 0, "waitTime": "wait_hour_2", "isEvent": false}},
-      {"name": "sub_world", "type": "weekendAll", "config": {"isSubCharacter": 1, "waitTime": "wait_min_40", "isEvent": false}},
-      {"name": "sub_world_statue", "type": "weekendAll", "config": {"isSubCharacter": 1, "waitTime": "wait_min_40", "isEvent": true}}
+      {"name": "main_world", "type": "weekendAll", "config": {"isSubCharacter": 0, "waitTime": "wait_hour_2", "potionEvent": false}},
+      {"name": "sub_world", "type": "weekendAll", "config": {"isSubCharacter": 1, "waitTime": "wait_min_40", "potionEvent": false}},
+      {"name": "sub_world_statue", "type": "weekendAll", "config": {"isSubCharacter": 1, "waitTime": "wait_min_40", "potionEvent": true}}
     ],
 
     "scheduleOnly": [
-      {"name": "only_schedule_1hour", "type": "scheduleOnly", "config": {"mainCharRepeat": 5, "scheduleTime": "01h", "scheduleOnly": true}}
+      {"name": "only_schedule_13", "type": "scheduleOnly", "config": {"mainCharRepeat": 13, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_12", "type": "scheduleOnly", "config": {"mainCharRepeat": 12, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_11", "type": "scheduleOnly", "config": {"mainCharRepeat": 11, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_10", "type": "scheduleOnly", "config": {"mainCharRepeat": 10, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_9", "type": "scheduleOnly", "config": {"mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_8", "type": "scheduleOnly", "config": {"mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_7", "type": "scheduleOnly", "config": {"mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_6", "type": "scheduleOnly", "config": {"mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_5", "type": "scheduleOnly", "config": {"mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule_4", "type": "scheduleOnly", "config": {"mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}}
     ]
   },
 
@@ -102,15 +79,15 @@
     },
     "main": {
       "macroScripts": ["main_countermagic"],
-      "resultScripts": ["main_world", "main13_only_schedule_1hour", "main13", "main13_1min", "main12_only_schedule_1hour", "main12", "main12_1min", "main11", "main11_1min", "main10", "main10_1min", "main9", "main9_1min"]
+      "resultScripts": ["main_world", "only_schedule_13", "main13", "only_schedule_12", "main12", "main11", "main10", "main9"]
     },
     "mainevent": {
       "macroScripts": ["main_countermagic"],
-      "resultScripts": ["main_world", "main13_only_schedule_1hour", "main13_event", "main13_3min_event", "main12_only_schedule_1hour", "main12_event", "main12_3min_event"]
+      "resultScripts": ["main_world", "only_schedule_13", "main13_event", "only_schedule_12", "main12_event"]
     },
-    "main_sidunevent": {
-      "macroScripts": ["main_countermagic"],
-      "resultScripts": ["main_world", "main13_1min_event", "main12_1min_event", "main11_1min_event", "main10_1min_event", "main9_1min_event"]
+    "onlyschedule": {
+      "resultScripts": ["only_schedule_13", "only_schedule_12","only_schedule_11","only_schedule_10","only_schedule_9","only_schedule_8","only_schedule_7","only_schedule_6","only_schedule_5","only_schedule_4"
+      ]
     }
   }
 }

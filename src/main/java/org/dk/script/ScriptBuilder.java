@@ -25,25 +25,38 @@ public class ScriptBuilder {
      */
     public String[] buildMainCharacter() {
         ArrayList<String> scripts = new ArrayList<>();
+
         scripts.addAll(Arrays.asList(scriptInit()));
 
-        if (!config.isScheduleOnly()) {
-            scripts.addAll(Arrays.asList(scriptDailyCheck()));
-            scripts.addAll(Arrays.asList(scriptBuyAll()));
-        }
+        scripts.addAll(Arrays.asList(scriptDailyCheck()));
+        scripts.addAll(Arrays.asList(scriptBuyAll()));
 
         for (int i = 1; i <= config.getMainCharRepeat(); i++) {
-            if (!config.isScheduleOnly()) {
-                scripts.addAll(Arrays.asList(scriptEventDungeon()));
-                scripts.addAll(Arrays.asList(scriptEventSidun()));
-                scripts.addAll(Arrays.asList(scriptSidunPadun()));
 
-                if (config.hasScheduleTime()) {
-                    scripts.addAll(Arrays.asList(scriptScheduleHunting()));
-                }
-            } else {
-                scripts.addAll(Arrays.asList(scriptScheduleHuntingItemChange()));
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
+            scripts.addAll(Arrays.asList(scriptSidunPadun()));
+
+            if (config.hasScheduleTime()) {
+                scripts.addAll(Arrays.asList(scriptScheduleHunting()));
             }
+            scripts.addAll(Arrays.asList(scriptCharChange(i)));
+        }
+
+        scripts.addAll(Arrays.asList(scriptFinish()));
+        return scripts.toArray(new String[0]);
+    }
+
+    /**
+     * 스케쥴 전용 스크립트 생성
+     */
+    public String[] buildScheduleOnly() {
+        ArrayList<String> scripts = new ArrayList<>();
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        for (int i = 1; i <= config.getMainCharRepeat(); i++) {
+            scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            scripts.addAll(Arrays.asList(scriptScheduleHuntingItemChange()));
             scripts.addAll(Arrays.asList(scriptCharChange(i)));
         }
 
@@ -61,39 +74,29 @@ public class ScriptBuilder {
         for (int i = 1; i <= config.getRepeat(); i++) {
             // 첫번째 캐릭터인 경우: 스케쥴 먼저 -> 출석체크, 일괄구매 -> 이벤트시던, 시던파던 -> 기란던전
             if (config.checkFirstAllstart() && i == 1) {
-                // 스케쥴 먼저 실행
-                if (config.hasScheduleTime()) {
-                    scripts.addAll(Arrays.asList(scriptGroupScheduleHunting()));
-                } else if (!config.checkFirstGroup()) {
+                if (!config.checkFirstGroup()) {
                     scripts.addAll(Arrays.asList(scriptGroupDelay()));
                 }
 
                 // 출석체크, 일괄구매
                 scripts.addAll(Arrays.asList(scriptDailyCheck()));
                 scripts.addAll(Arrays.asList(scriptBuyAll()));
-
-                // 이벤트시던, 시던파던
-                scripts.addAll(Arrays.asList(scriptEventDungeon()));
-                scripts.addAll(Arrays.asList(scriptEventSidun()));
-                scripts.addAll(Arrays.asList(scriptSidunPadun()));
-            }
-            // 첫번째 캐릭터가 아닌 경우: 이벤트시던, 시던파던 -> 스케쥴
-            else {
-                // 이벤트시던, 시던파던
-                scripts.addAll(Arrays.asList(scriptEventDungeon()));
-                scripts.addAll(Arrays.asList(scriptEventSidun()));
-                scripts.addAll(Arrays.asList(scriptSidunPadun()));
-
-                if (config.hasScheduleTime()) {
-                    scripts.addAll(Arrays.asList(scriptScheduleHunting()));
-                }
             }
 
+            // 이벤트시던, 시던파던
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
+            scripts.addAll(Arrays.asList(scriptSidunPadun()));
+
+            if (config.hasScheduleTime()) {
+                scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            }
             // 기란던전
             scripts.addAll(Arrays.asList(scriptGiran()));
 
             // 캐릭터 전환
             scripts.addAll(Arrays.asList(scriptCharChange(i)));
+
         }
 
         scripts.addAll(Arrays.asList(scriptStoryIsland("prevstory_gisa")));
@@ -103,31 +106,17 @@ public class ScriptBuilder {
     }
 
     /**
-     * 스케쥴 전용 스크립트 생성
-     */
-    public String[] buildScheduleOnly() {
-        ArrayList<String> scripts = new ArrayList<>();
-        scripts.addAll(Arrays.asList(scriptInit()));
-
-        for (int i = 1; i <= config.getMainCharRepeat(); i++) {
-            scripts.addAll(Arrays.asList(scriptScheduleHunting()));
-            scripts.addAll(Arrays.asList(scriptCharChange(i)));
-        }
-
-        scripts.addAll(Arrays.asList(scriptFinish()));
-        return scripts.toArray(new String[0]);
-    }
-
-    /**
      * 주말 전체 월드 던전 스크립트 생성 (테베 -> 아틀란 -> 티칼)
-     * @param isSubCharacter 0: 주캐릭터, 1: 보조캐릭터
-     * @param waitTime 대기 시간 스크립트명 (예: "wait_hour_2")
-     * @param isEvent 이벤트 여부
+     * Config 필드 사용: isSubCharacter, waitTime, isEvent
      */
-    public static String[] buildWeekendAll(int isSubCharacter, String waitTime, boolean isEvent) {
-        String[] tebe = buildWeekendHunt("tebe", isSubCharacter, waitTime, isEvent);
-        String[] atlan = buildWeekendHunt("atlan", isSubCharacter, waitTime, isEvent);
-        String[] tikal = buildWeekendHunt("tical", isSubCharacter, waitTime, isEvent);
+    public static String[] buildWeekendAll(Config config) {
+        int isSubCharacter = config.getIsSubCharacter();
+        String waitTime = config.getWaitTime();
+        boolean potionEvent = config.isPotionEvent();
+
+        String[] tebe = buildWeekendHuntInternal("tebe", isSubCharacter, waitTime, potionEvent);
+        String[] atlan = buildWeekendHuntInternal("atlan", isSubCharacter, waitTime, potionEvent);
+        String[] tikal = buildWeekendHuntInternal("tical", isSubCharacter, waitTime, potionEvent);
 
         ArrayList<String> scripts = new ArrayList<>();
         scripts.addAll(Arrays.asList(tebe));
@@ -139,22 +128,31 @@ public class ScriptBuilder {
 
     /**
      * 개별 월드 던전 스크립트 생성 (테베, 티칼, 아틀란)
-     * @param dungeonName 던전명 (tebe, atlan, tical)
-     * @param isSubCharacter 0: 주캐릭터, 1: 보조캐릭터
-     * @param waitTime 대기 시간 스크립트명
-     * @param isEvent 이벤트 여부
+     * Config 필드 사용: worldDungeon, isSubCharacter, waitTime, potionEvent
      */
-    public static String[] buildWeekendHunt(String dungeonName, int isSubCharacter, String waitTime, boolean isEvent) {
+    public static String[] buildWeekendHunt(Config config) {
+        String worldDungeon = config.getWorldDungeon();
+        int isSubCharacter = config.getIsSubCharacter();
+        String waitTime = config.getWaitTime();
+        boolean potionEvent = config.isPotionEvent();
+
+        return buildWeekendHuntInternal(worldDungeon, isSubCharacter, waitTime, potionEvent);
+    }
+
+    /**
+     * 개별 월드 던전 스크립트 생성 (내부용)
+     */
+    private static String[] buildWeekendHuntInternal(String worldDungeon, int isSubCharacter, String waitTime, boolean potionEvent) {
         String returnHome = "button_8"; // 일반귀환
-        String potion = isEvent ? "world_buy_potion_half_event" : "world_buy_potion_event";
+        String potion = potionEvent ? "world_buy_potion_half_event" : "world_buy_potion_half";
 
         if (isSubCharacter == 0) {
             // 주캐릭터용 스크립트
             return new String[]{
                 "wait_sec_10",
-                "world_move_" + dungeonName,
+                "world_move_" + worldDungeon,
                 "wait_sec_5",
-                "world_hunting_" + dungeonName,
+                "world_hunting_" + worldDungeon,
                 "wait_sec_5",
                 "power_save_on",
                 waitTime,
@@ -165,32 +163,35 @@ public class ScriptBuilder {
             // 보조캐릭터용 스크립트 (물약 구매 포함, 3회 반복)
             return new String[]{
                 "wait_sec_10",
-                "world_move_" + dungeonName,
+                "world_move_" + worldDungeon,
                 "wait_sec_5",
                 potion,
                 "wait_sec_5",
-                "world_hunting_" + dungeonName,
+                "world_hunting_" + worldDungeon,
                 "wait_sec_5",
                 "power_save_on",
                 waitTime,
+
                 "power_save_off",
                 returnHome,
                 "wait_sec_10",
                 potion,
                 "wait_sec_5",
-                "world_hunting_" + dungeonName,
+                "world_hunting_" + worldDungeon,
                 "wait_sec_5",
                 "power_save_on",
                 waitTime,
+
                 "power_save_off",
                 returnHome,
                 "wait_sec_10",
                 potion,
                 "wait_sec_5",
-                "world_hunting_" + dungeonName,
+                "world_hunting_" + worldDungeon,
                 "wait_sec_5",
                 "power_save_on",
                 waitTime,
+
                 "power_save_off",
                 returnHome
             };
@@ -206,8 +207,8 @@ public class ScriptBuilder {
      */
     public String[] scriptInit() {
         return new String[]{
-            "ESC",
-            "wait_sec_2"
+            config.getReturnHomeKey(),
+            "wait_sec_10"
         };
     }
 
@@ -217,7 +218,7 @@ public class ScriptBuilder {
     public String[] scriptDailyCheck() {
         return new String[]{
             "daily_check",
-            "wait_sec_5"
+            "wait_sec_2"
         };
     }
 
@@ -227,7 +228,7 @@ public class ScriptBuilder {
     public String[] scriptBuyAll() {
         return new String[]{
             "buy_all",
-            "wait_sec_5"
+            "wait_sec_2"
         };
     }
 
@@ -235,10 +236,10 @@ public class ScriptBuilder {
      * 이벤트 던전 스크립트
      */
     public String[] scriptEventDungeon() {
-        if (config.hasSpecialDungeon()) {
+        if (config.hasEventDungeon()) {
             return new String[]{
-                config.getSpecialDungeon(),
-                "wait_sec_10",
+                config.getEventDungeon(),
+                config.getReturnHomeKey(),
                 config.getReturnHomeKey(),
                 "wait_sec_10"
             };
@@ -250,12 +251,12 @@ public class ScriptBuilder {
      * 이벤트 시던 스크립트
      */
     public String[] scriptEventSidun() {
-        if (config.hasEvent()) {
+        if (config.hasSidunEvent() && !"event".equals(config.getSidunEvent())) {
             return new String[]{
-                config.getEventRaw(),
-                "wait_sec_10",
+                config.getSidunEvent(),
                 config.getReturnHomeKey(),
-                "wait_sec_10"
+                config.getReturnHomeKey(),
+                "wait_sec_5"
             };
         }
         return new String[0];
@@ -263,25 +264,48 @@ public class ScriptBuilder {
 
     /**
      * 시던파던 스크립트
+     * 시던 이벤트가 있으면 이벤트 버전(sidun_turnevent, sidun_mimicevent) 사용
      */
     public String[] scriptSidunPadun() {
+        String sidunTurn = config.hasSidunEvent() ? "sidun_turnevent" : "sidun_turn";
+        String sidunMimic = config.hasSidunEvent() ? "sidun_mimicevent" : "sidun_mimic";
+
         return new String[]{
-            "sidun_turn",
-            "wait_sec_10",
+            sidunTurn,
             config.getReturnHomeKey(),
-            "wait_sec_10",
-            "sidun_mimic",
-            "wait_sec_10",
             config.getReturnHomeKey(),
-            "wait_sec_10",
+            "wait_sec_5",
+
+            sidunMimic,
+            config.getReturnHomeKey(),
+            config.getReturnHomeKey(),
+            "wait_sec_5",
+
             "party_death",
-            "wait_sec_10",
+            config.getReturnHomeKey(),
             config.getReturnHomeKey(),
             "wait_sec_10",
+
             "party_orim",
+            config.getReturnHomeKey(),
+            config.getReturnHomeKey(),
             "wait_sec_10",
+
+            "make_favorite",
+            "donate",
+
+            "wait_sec_2",
+            "get_quest",
+            "get_mail",
+            "wait_sec_2",
+            config.getDragonKey(),
+            "wait_sec_2",
+            "get_item_green",
+            "wait_sec_2",
             config.getReturnHomeKey(),
             "wait_sec_10"
+
+
         };
     }
 
@@ -293,8 +317,10 @@ public class ScriptBuilder {
             return new String[0];
         }
         return new String[]{
-            "run_schedule",
+            "get_item_white",
             "wait_sec_5",
+            "run_schedule",
+            "wait_sec_30",
             "power_save_on",
             config.getScheduleTime(),
             "power_save_off",
@@ -311,35 +337,31 @@ public class ScriptBuilder {
             return new String[0];
         }
         return new String[]{
-            "item_change_choose_1",
-            "wait_sec_5",
-            "run_schedule",
-            "wait_sec_5",
-            "power_save_on",
-            config.getScheduleTime(),
-            "power_save_off",
-            config.getReturnHomeKey(),
-            "wait_sec_10",
-            "item_change_choose_3",
-            "wait_sec_5"
-        };
-    }
+                "item_change_move_kenmal",
+                "wait_sec_10",
 
-    /**
-     * 그룹 스케줄 사냥 스크립트
-     */
-    public String[] scriptGroupScheduleHunting() {
-        if (!config.hasScheduleTime()) {
-            return new String[0];
-        }
-        return new String[]{
-            "run_schedule",
-            "wait_sec_5",
-            "power_save_on",
-            config.getScheduleTime(),
-            "power_save_off",
-            config.getReturnHomeKey(),
-            "wait_sec_10"
+                "get_item_white",
+                "wait_sec_2",
+                "item_change_find",
+                "wait_sec_2",
+                "item_change_choose_1",
+                "wait_sec_2",
+
+                "run_schedule",
+                "wait_sec_30",
+                "power_save_on",
+                config.getScheduleTime(),
+                "power_save_off",
+                config.getReturnHomeKey(),
+
+                "wait_sec_10",
+                "item_change_move_kenmal",
+                "wait_sec_10",
+                "item_change_choose_3",
+                "wait_sec_2",
+                "item_change_save",
+                "wait_sec_2"
+
         };
     }
 
@@ -348,9 +370,13 @@ public class ScriptBuilder {
      */
     public String[] scriptGroupDelay() {
         return new String[]{
+            "run_schedule",
+            "wait_sec_30",
             "power_save_on",
             config.getGroup(),
-            "power_save_off"
+            "power_save_off",
+            config.getReturnHomeKey(),
+            "wait_sec_10"
         };
     }
 
@@ -360,12 +386,10 @@ public class ScriptBuilder {
     public String[] scriptCharChange(int repeatIndex) {
         int charNum = getNextCharacterNumber(repeatIndex);
         return new String[]{
-            "choose_menu",
-            "button_restart",
+            "get_quest",
+            "get_mail",
+            "wait_sec_2",
             "changeChar_" + charNum + "_integration",
-            "wait_sec_30",
-            config.getReturnHomeKey(),
-            "wait_sec_5"
         };
     }
 
@@ -376,32 +400,25 @@ public class ScriptBuilder {
      * 반복 인덱스에 따른 다음 캐릭터 번호 계산
      */
     private int getNextCharacterNumber(int repeatIndex) {
-        // character 설정에 따라 다음 캐릭터 번호 결정 (subCharacter용)
         String character = config.getCharacter();
         if (character != null) {
-            // "1번" -> 1, "2번" -> 2 등
             String numStr = character.replace("번", "");
             try {
-                int baseNum = Integer.parseInt(numStr);
-                int targetNum = baseNum + repeatIndex;
-                // 6, 7, 8번 스킵
-                if (targetNum >= 6 && targetNum <= 8) {
-                    targetNum += 3; // 6->9, 7->10, 8->11
-                }
-                return targetNum;
+                // "번" 제거 및 숫자 변환
+                int baseNum = Integer.parseInt(character.replace("번", ""));
+
+                // 순환 로직: (baseNum + repeatIndex - 1) % 3 + 1
+                return (baseNum + repeatIndex - 1) % 3 + 1;
             } catch (NumberFormatException e) {
                 return repeatIndex;
             }
         }
 
         // mainCharRepeat 기반일 경우 (mainCharacter용)
-        // 13부터 역순으로: 13, 12, 11, 10, 9, 5, 4, 3, 2, 1 (6,7,8 스킵)
-        int mainRepeat = config.getMainCharRepeat();
-        int[] sequence = buildCharSequence(mainRepeat);
-        if (repeatIndex > 0 && repeatIndex <= sequence.length) {
-            return sequence[repeatIndex - 1];
-        }
-        return 1;
+        if(repeatIndex == config.getMainCharRepeat())
+            return 1;
+        else
+            return config.getMainCharRepeat();
     }
 
     /**
@@ -423,8 +440,17 @@ public class ScriptBuilder {
      */
     public String[] scriptGiran() {
         return new String[]{
-            "dungeon_giran",
+            config.getReturnKey(),
             "wait_sec_10",
+            "dungeon_giran",
+            "power_save_on",
+            "wait_hour_2.5",
+            "power_save_off",
+            "get_quest",
+            "get_mail",
+            "power_save_on",
+            "wait_hour_2.5",
+            "power_save_off",
             config.getReturnHomeKey(),
             "wait_sec_10"
         };
@@ -435,10 +461,13 @@ public class ScriptBuilder {
      */
     public String[] scriptStoryIsland(String dungeonType) {
         return new String[]{
+            "get_item_green",
+            "wait_sec_2",
             dungeonType,
-            "wait_sec_10",
+            "power_save_on",
+            "wait_hour_1",
+            "power_save_off",
             config.getReturnHomeKey(),
-            "wait_sec_10"
         };
     }
 
@@ -447,13 +476,10 @@ public class ScriptBuilder {
      */
     public String[] scriptFinish() {
         return new String[]{
-            "choose_menu",
-            "button_restart",
-            "changeChar_1_integration",
+            "run_schedule",
             "wait_sec_30",
-            config.getReturnHomeKey(),
-            "wait_sec_5"
-        };
+            "power_save_on"
+       };
     }
 
     // ================================
@@ -484,14 +510,14 @@ public class ScriptBuilder {
     /**
      * 주말 전체 월드 스크립트 생성 (정적 메서드)
      */
-    public static String[] makeWeekendAll(int isSubCharacter, String waitTime, boolean isEvent) {
-        return buildWeekendAll(isSubCharacter, waitTime, isEvent);
+    public static String[] makeWeekendAll(Config config) {
+        return buildWeekendAll(config);
     }
 
     /**
      * 주말 개별 던전 스크립트 생성 (정적 메서드)
      */
-    public static String[] makeWeekendHunt(String dungeonName, int isSubCharacter, String waitTime, boolean isEvent) {
-        return buildWeekendHunt(dungeonName, isSubCharacter, waitTime, isEvent);
+    public static String[] makeWeekendHunt(Config config) {
+        return buildWeekendHunt(config);
     }
 }

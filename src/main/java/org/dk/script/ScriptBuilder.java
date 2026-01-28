@@ -28,10 +28,50 @@ public class ScriptBuilder {
 
         scripts.addAll(Arrays.asList(scriptInit()));
 
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
+        int numIterations = maxNum - startNum + 1;
+
+        if (getStartNum() == 1) {
+            scripts.addAll(Arrays.asList(scriptDailyCheck()));
+            scripts.addAll(Arrays.asList(scriptBuyAll()));
+        }
+
+        for (int i = 1; i <= numIterations; i++) {
+
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
+            scripts.addAll(Arrays.asList(scriptSidunPadun()));
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
+
+            if (config.hasScheduleTime()) {
+                scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            }
+
+            // 캐릭터 변경
+            int nextChar = getNextMainCharacterNumber(i);
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+        }
+
+        scripts.addAll(Arrays.asList(scriptFinish()));
+        return scripts.toArray(new String[0]);
+    }
+
+    /**
+    * 메인 캐릭터 순차 스크립트 생성
+    */
+    public String[] buildMainCharacterSeq() {
+        ArrayList<String> scripts = new ArrayList<>();
+
+        scripts.addAll(Arrays.asList(scriptInit()));
+
         scripts.addAll(Arrays.asList(scriptDailyCheck()));
         scripts.addAll(Arrays.asList(scriptBuyAll()));
 
-        for (int i = 1; i <= config.getMainCharRepeat(); i++) {
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
+        int numIterations = maxNum - startNum + 1;
+
+        for (int i = 1; i <= numIterations; i++) {
 
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
             scripts.addAll(Arrays.asList(scriptEventSidun()));
@@ -40,7 +80,9 @@ public class ScriptBuilder {
             if (config.hasScheduleTime()) {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
             }
-            scripts.addAll(Arrays.asList(scriptCharChange(i)));
+
+            int nextChar = getNextMainCharacterNumber(i);
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
         }
 
         scripts.addAll(Arrays.asList(scriptFinish()));
@@ -54,10 +96,16 @@ public class ScriptBuilder {
         ArrayList<String> scripts = new ArrayList<>();
         scripts.addAll(Arrays.asList(scriptInit()));
 
-        for (int i = 1; i <= config.getMainCharRepeat(); i++) {
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
+        int numIterations = maxNum - startNum + 1;
+
+        for (int i = 1; i <= numIterations; i++) {
             scripts.addAll(Arrays.asList(scriptScheduleHunting()));
             scripts.addAll(Arrays.asList(scriptScheduleHuntingItemChange()));
-            scripts.addAll(Arrays.asList(scriptCharChange(i)));
+            
+            int nextChar = getNextMainCharacterNumber(i);
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
         }
 
         scripts.addAll(Arrays.asList(scriptFinish()));
@@ -71,36 +119,63 @@ public class ScriptBuilder {
         ArrayList<String> scripts = new ArrayList<>();
         scripts.addAll(Arrays.asList(scriptInit()));
 
-        for (int i = 1; i <= config.getRepeat(); i++) {
-            // 첫번째 캐릭터인 경우: 스케쥴 먼저 -> 출석체크, 일괄구매 -> 이벤트시던, 시던파던 -> 기란던전
-            if (config.checkFirstAllstart() && i == 1) {
-                if (!config.checkFirstGroup()) {
-                    scripts.addAll(Arrays.asList(scriptGroupDelay()));
-                }
+        int startNum = getStartNum();
+        // 1->3회(1,2,3), 2->2회(2,3), 3->1회(3)
+        int numIterations = 4 - startNum; 
 
-                // 출석체크, 일괄구매
+        for (int i = 1; i <= numIterations; i++) {
+            // 캐릭터 전환을 처음으로 이동
+            int nextChar = getNextSubCharacterNumber(i);
+            if (getStartNum() != 1 || i != 1) {
+                scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+            }
+
+            // 첫 번째 반복에서 그룹 대기 수행
+            if (!config.checkFirstGroup()) {
+                scripts.addAll(Arrays.asList(scriptGroupDelay()));
+            }
+
+            if(getStartNum() == 1 && i ==1 ) {
                 scripts.addAll(Arrays.asList(scriptDailyCheck()));
                 scripts.addAll(Arrays.asList(scriptBuyAll()));
             }
 
+
             // 이벤트시던, 시던파던
-            scripts.addAll(Arrays.asList(scriptEventDungeon()));
             scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptSidunPadun()));
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
 
             if (config.hasScheduleTime()) {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
             }
             // 기란던전
             scripts.addAll(Arrays.asList(scriptGiran()));
-
-            // 캐릭터 전환
-            scripts.addAll(Arrays.asList(scriptCharChange(i)));
-
         }
+
+        // 모든 반복 종료 후 1번 캐릭터로 전환
+        scripts.addAll(Arrays.asList(scriptCharChange(1)));
 
         scripts.addAll(Arrays.asList(scriptStoryIsland("prevstory_gisa")));
         scripts.addAll(Arrays.asList(scriptFinish()));
+
+        return scripts.toArray(new String[0]);
+    }
+
+    /**
+     * 보조 캐릭터 스크립트 생성
+     */
+    public String[] buildOman() {
+        ArrayList<String> scripts = new ArrayList<>();
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        int startNum = getStartNum();
+        scripts.addAll(Arrays.asList(scriptCharChange(startNum)));
+
+
+        scripts.addAll(Arrays.asList(new String[]{
+                "oman"
+        }));
 
         return scripts.toArray(new String[0]);
     }
@@ -295,15 +370,10 @@ public class ScriptBuilder {
             "donate",
 
             "wait_sec_2",
-            "get_quest",
-            "get_mail",
-            "wait_sec_2",
             config.getDragonKey(),
             "wait_sec_2",
             "get_item_green",
-            "wait_sec_2",
-            config.getReturnHomeKey(),
-            "wait_sec_10"
+            "wait_sec_2"
 
 
         };
@@ -383,8 +453,7 @@ public class ScriptBuilder {
     /**
      * 캐릭터 변경 스크립트
      */
-    public String[] scriptCharChange(int repeatIndex) {
-        int charNum = getNextCharacterNumber(repeatIndex);
+    public String[] scriptCharChange(int charNum) {
         return new String[]{
             "get_quest",
             "get_mail",
@@ -397,28 +466,50 @@ public class ScriptBuilder {
     private static final int[] VALID_CHAR_NUMBERS = {1, 2, 3, 4, 5, 9, 10, 11, 12, 13};
 
     /**
-     * 반복 인덱스에 따른 다음 캐릭터 번호 계산
+     * 메인 캐릭터용 다음 번호 계산
      */
-    private int getNextCharacterNumber(int repeatIndex) {
-        String character = config.getCharacter();
-        if (character != null) {
-            String numStr = character.replace("번", "");
-            try {
-                // "번" 제거 및 숫자 변환
-                int baseNum = Integer.parseInt(character.replace("번", ""));
+    private int getNextMainCharacterNumber(int repeatIndex) {
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
 
-                // 순환 로직: (baseNum + repeatIndex - 1) % 3 + 1
-                return (baseNum + repeatIndex - 1) % 3 + 1;
-            } catch (NumberFormatException e) {
-                return repeatIndex;
-            }
+        // 현재 플레이 중인 캐릭터 번호
+        int currentNum = startNum + repeatIndex - 1;
+
+        // 현재 플레이한 캐릭터가 설정된 최대 번호(maxNum)라면 1번으로 복귀
+        if (currentNum >= maxNum) {
+            return 1;
         }
 
-        // mainCharRepeat 기반일 경우 (mainCharacter용)
-        if(repeatIndex == config.getMainCharRepeat())
-            return 1;
-        else
-            return config.getMainCharRepeat();
+        // 그 외에는 다음 번호로 변경
+        return currentNum + 1;
+    }
+
+    /**
+     * 시작 캐릭터 번호 추출 (기본값 1)
+     */
+    private int getStartNum() {
+        String character = config.getCharacter();
+        if (character != null) {
+            try {
+                return Integer.parseInt(character.replace("번", ""));
+            } catch (NumberFormatException e) {
+                return 1;
+            }
+        }
+        return 1;
+    }
+
+    /**
+     * 보조 캐릭터용 다음 번호 계산 (3개 캐릭터 순환)
+     */
+    private int getNextSubCharacterNumber(int repeatIndex) {
+        int startNum = getStartNum();
+        
+        // (startNum + repeatIndex - 2) % 3 + 1
+        // 예: start=1, i=1 -> (1+1-2)%3 + 1 = 1
+        // 예: start=1, i=4 -> (1+4-2)%3 + 1 = 1
+        // 예: start=2, i=1 -> (2+1-2)%3 + 1 = 2
+        return (startNum + repeatIndex - 2) % 3 + 1;
     }
 
     /**
@@ -512,6 +603,13 @@ public class ScriptBuilder {
      */
     public static String[] makeWeekendAll(Config config) {
         return buildWeekendAll(config);
+    }
+
+    /**
+     * 주말 전체 월드 스크립트 생성 (정적 메서드)
+     */
+    public static String[] makeOman(Config config) {
+        return new ScriptBuilder(config).buildOman();
     }
 
     /**

@@ -1,60 +1,73 @@
 {
   "macros": {
     "main": [
-      {"name": "main1_13_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 13, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main2_13_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 13, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main3_13_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 13, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main4_13_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 13, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main5_13_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 13, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main1_13", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 13, "scheduleTime": "01m"}},
-      {"name": "main2_13", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 13, "scheduleTime": "01m"}},
-      {"name": "main3_13", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 13, "scheduleTime": "01m"}},
-      {"name": "main4_13", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 13, "scheduleTime": "01m"}},
-      {"name": "main5_13", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 13, "scheduleTime": "01m"}},
+      {"name": "main1_13_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 13, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main2_13_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 13, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main3_13_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 13, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main4_13_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 13, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main5_13_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 13, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main1_13", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 13, "scheduleTime": "00h"}},
+      {"name": "main2_13", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 13, "scheduleTime": "00h"}},
+      {"name": "main3_13", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 13, "scheduleTime": "00h"}},
+      {"name": "main4_13", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 13, "scheduleTime": "00h"}},
+      {"name": "main5_13", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 13, "scheduleTime": "00h"}},
 
-      {"name": "main1_12_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 12, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main2_12_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 12, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main3_12_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 12, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main4_12_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 12, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main5_12_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 12, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main1_12", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 12, "scheduleTime": "01m"}},
-      {"name": "main2_12", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 12, "scheduleTime": "01m"}},
-      {"name": "main3_12", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 12, "scheduleTime": "01m"}},
-      {"name": "main4_12", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 12, "scheduleTime": "01m"}},
-      {"name": "main5_12", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 12, "scheduleTime": "01m"}},
+      {"name": "main1_12_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 12, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main2_12_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 12, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main3_12_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 12, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main4_12_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 12, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main5_12_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 12, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main1_12", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 12, "scheduleTime": "00h"}},
+      {"name": "main2_12", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 12, "scheduleTime": "00h"}},
+      {"name": "main3_12", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 12, "scheduleTime": "00h"}},
+      {"name": "main4_12", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 12, "scheduleTime": "00h"}},
+      {"name": "main5_12", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 12, "scheduleTime": "00h"}},
 
-      {"name": "main1_11_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 11, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main2_11_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 11, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main3_11_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 11, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main4_11_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 11, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main5_11_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 11, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main1_11", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 11, "scheduleTime": "01m"}},
-      {"name": "main2_11", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 11, "scheduleTime": "01m"}},
-      {"name": "main3_11", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 11, "scheduleTime": "01m"}},
-      {"name": "main4_11", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 11, "scheduleTime": "01m"}},
-      {"name": "main5_11", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 11, "scheduleTime": "01m"}},
+      {"name": "main1_11_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 11, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main2_11_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 11, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main3_11_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 11, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main4_11_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 11, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main5_11_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 11, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main1_11", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 11, "scheduleTime": "00h"}},
+      {"name": "main2_11", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 11, "scheduleTime": "00h"}},
+      {"name": "main3_11", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 11, "scheduleTime": "00h"}},
+      {"name": "main4_11", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 11, "scheduleTime": "00h"}},
+      {"name": "main5_11", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 11, "scheduleTime": "00h"}},
 
-      {"name": "main1_10_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 10, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main2_10_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 10, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main3_10_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 10, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main4_10_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 10, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main5_10_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 10, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main1_10", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 10, "scheduleTime": "01m"}},
-      {"name": "main2_10", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 10, "scheduleTime": "01m"}},
-      {"name": "main3_10", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 10, "scheduleTime": "01m"}},
-      {"name": "main4_10", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 10, "scheduleTime": "01m"}},
-      {"name": "main5_10", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 10, "scheduleTime": "01m"}},
+      {"name": "main1_10_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 10, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main2_10_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 10, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main3_10_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 10, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main4_10_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 10, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main5_10_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 10, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main1_10", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 10, "scheduleTime": "00h"}},
+      {"name": "main2_10", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 10, "scheduleTime": "00h"}},
+      {"name": "main3_10", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 10, "scheduleTime": "00h"}},
+      {"name": "main4_10", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 10, "scheduleTime": "00h"}},
+      {"name": "main5_10", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 10, "scheduleTime": "00h"}},
 
-      {"name": "main1_9_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 9, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main2_9_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 9, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main3_9_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 9, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main4_9_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 9, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main5_9_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 9, "scheduleTime": "01m", "useCurrentEvent": true}},
-      {"name": "main1_9", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 9, "scheduleTime": "01m"}},
-      {"name": "main2_9", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 9, "scheduleTime": "01m"}},
-      {"name": "main3_9", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 9, "scheduleTime": "01m"}},
-      {"name": "main4_9", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 9, "scheduleTime": "01m"}},
-      {"name": "main5_9", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 9, "scheduleTime": "01m"}}
+      {"name": "main1_9_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 9, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main2_9_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 9, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main3_9_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 9, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main4_9_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 9, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main5_9_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 9, "scheduleTime": "00h", "useCurrentEvent": true}},
+      {"name": "main1_9", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 9, "scheduleTime": "00h"}},
+      {"name": "main2_9", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 9, "scheduleTime": "00h"}},
+      {"name": "main3_9", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 9, "scheduleTime": "00h"}},
+      {"name": "main4_9", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 9, "scheduleTime": "00h"}},
+      {"name": "main5_9", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 9, "scheduleTime": "00h"}},
+
+
+      {"name": "yoon1_7_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon2_7_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon3_7_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon4_7_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon5_7_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon1_7", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon2_7", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon3_7", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon4_7", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon5_7", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 7, "scheduleTime": "00m"}}
+
     ],
 
     "scheduleOnly": [
@@ -86,7 +99,14 @@
       {"name": "only_schedule2_9", "type": "scheduleOnly", "config": {"character": "2번","mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
       {"name": "only_schedule3_9", "type": "scheduleOnly", "config": {"character": "3번","mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
       {"name": "only_schedule4_9", "type": "scheduleOnly", "config": {"character": "4번","mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
-      {"name": "only_schedule5_9", "type": "scheduleOnly", "config": {"character": "5번","mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}}
+      {"name": "only_schedule5_9", "type": "scheduleOnly", "config": {"character": "5번","mainCharRepeat": 9, "scheduleTime": "01h", "scheduleOnly": true}},
+
+      {"name": "only_schedule1_7", "type": "scheduleOnly", "config": {"character": "1번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule2_7", "type": "scheduleOnly", "config": {"character": "2번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule3_7", "type": "scheduleOnly", "config": {"character": "3번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule4_7", "type": "scheduleOnly", "config": {"character": "4번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule5_7", "type": "scheduleOnly", "config": {"character": "5번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}}
+
     ],
 
     "sub_groupA": [
@@ -259,10 +279,17 @@
         "only_schedule5_9", "main5_9_event"
       ]
     },
-    "onlyschedule": {
-      "macroScripts": ["main_countermagic"],
+
+
+    "yoonmain" :
+    {
+      "macroScripts": [],
       "resultScripts": ["main_world",
-        "only_schedule1_11", "main1_11_event"
+        "only_schedule1_7", "yoon1_7","yoon1_7_event",
+        "only_schedule2_7", "yoon2_7","yoon2_7_event",
+        "only_schedule3_7", "yoon3_7","yoon3_7_event",
+        "only_schedule4_7", "yoon4_7","yoon4_7_event",
+        "only_schedule5_7", "yoon5_7","yoon5_7_event"
       ]
     }
   }

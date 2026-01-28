@@ -40,8 +40,15 @@ public class ScriptBuilder {
         for (int i = 1; i <= numIterations; i++) {
 
             scripts.addAll(Arrays.asList(scriptEventSidun()));
-            scripts.addAll(Arrays.asList(scriptSidunPadun()));
+            //통합버전제외
+            //scripts.addAll(Arrays.asList(scriptSidunPadun()));
+
+            scripts.addAll(Arrays.asList(scriptSidun()));
+            scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptMakeFavorite()));
+            scripts.addAll(Arrays.asList(scriptDonate()));
+            scripts.addAll(Arrays.asList(scriptDragonKey()));
 
             if (config.hasScheduleTime()) {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
@@ -101,7 +108,7 @@ public class ScriptBuilder {
         int numIterations = maxNum - startNum + 1;
 
         for (int i = 1; i <= numIterations; i++) {
-            scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            //scripts.addAll(Arrays.asList(scriptScheduleHunting()));
             scripts.addAll(Arrays.asList(scriptScheduleHuntingItemChange()));
             
             int nextChar = getNextMainCharacterNumber(i);
@@ -143,12 +150,20 @@ public class ScriptBuilder {
 
             // 이벤트시던, 시던파던
             scripts.addAll(Arrays.asList(scriptEventSidun()));
-            scripts.addAll(Arrays.asList(scriptSidunPadun()));
+
+            // 통합버전제외
+            //scripts.addAll(Arrays.asList(scriptSidunPadun()));
+            scripts.addAll(Arrays.asList(scriptSidun()));
+            scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptMakeFavorite()));
+            scripts.addAll(Arrays.asList(scriptDonate()));
+            scripts.addAll(Arrays.asList(scriptDragonKey()));
 
             if (config.hasScheduleTime()) {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
             }
+            scripts.addAll(Arrays.asList(scriptItemGreen()));
             // 기란던전
             scripts.addAll(Arrays.asList(scriptGiran()));
         }
@@ -338,6 +353,84 @@ public class ScriptBuilder {
     }
 
     /**
+     * 시던 스크립트
+     * 시던 이벤트가 있으면 이벤트 버전(sidun_turnevent, sidun_mimicevent) 사용
+     */
+    public String[] scriptSidun() {
+        String sidunTurn = config.hasSidunEvent() ? "sidun_turnevent" : "sidun_turn";
+        String sidunMimic = config.hasSidunEvent() ? "sidun_mimicevent" : "sidun_mimic";
+
+        return new String[]{
+                sidunTurn,
+                config.getReturnHomeKey(),
+                config.getReturnHomeKey(),
+                "wait_sec_5",
+
+                sidunMimic,
+                config.getReturnHomeKey(),
+                config.getReturnHomeKey(),
+                "wait_sec_5"
+        };
+    }
+
+    /**
+     * 파던 스크립트
+     */
+    public String[] scriptPadun() {
+        return new String[]{
+                "party_death",
+                config.getReturnHomeKey(),
+                config.getReturnHomeKey(),
+                "wait_sec_10",
+
+                "party_orim",
+                config.getReturnHomeKey(),
+                config.getReturnHomeKey(),
+                "wait_sec_10"
+        };
+    }
+
+    /**
+     * 제작 스크립트
+     */
+    public String[] scriptMakeFavorite() {
+        return new String[]{
+                "make_favorite",
+                "wait_sec_2"
+        };
+    }
+
+    /**
+     * 기부 스크립트
+     */
+    public String[] scriptDonate() {
+        return new String[]{
+                "donate",
+                "wait_sec_2"
+        };
+    }
+
+    /**
+     * 용옥 스크립트
+     */
+    public String[] scriptDragonKey() {
+        return new String[]{
+                config.getDragonKey(),
+                "wait_sec_2"
+        };
+    }
+
+    /**
+     * 고급획득변경 스크립트
+     */
+    public String[] scriptItemGreen() {
+        return new String[]{
+                "get_item_green",
+                "wait_sec_2"
+        };
+    }
+
+    /**
      * 시던파던 스크립트
      * 시던 이벤트가 있으면 이벤트 버전(sidun_turnevent, sidun_mimicevent) 사용
      */
@@ -374,8 +467,6 @@ public class ScriptBuilder {
             "wait_sec_2",
             "get_item_green",
             "wait_sec_2"
-
-
         };
     }
 

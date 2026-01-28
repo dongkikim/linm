@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class JsonMergerMultiple {
 
     private static final String DEFINITIONS_PATH = "src/main/resources/macro-definitions.json";
+    private static final String LOG_FILE_PATH = "src/result/generation_log.txt";
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) {
@@ -65,7 +66,7 @@ public class JsonMergerMultiple {
                 String name = macroDef.get("name").asText();
                 String type = macroDef.get("type").asText();
                 JsonNode configNode = macroDef.get("config");
-
+                System.out.println("\n--- Name: " + name + " ---");
                 Config config = buildConfig(configNode, sidunEvent, dungeonEvent);
                 String[] scripts = buildScripts(type, config, configNode);
 
@@ -146,6 +147,8 @@ public class JsonMergerMultiple {
                 return ScriptBuilder.makeScheduleOnly(config);
             case "weekendAll":
                 return ScriptBuilder.makeWeekendAll(config);
+            case "oman":
+                return ScriptBuilder.makeOman(config);
             default:
                 System.out.println("알 수 없는 스크립트 타입: " + type);
                 return new String[0];
@@ -224,6 +227,12 @@ public class JsonMergerMultiple {
                     }
                 }
             }
+        }
+
+        // 로그 파일 삭제
+        File logFile = new File(LOG_FILE_PATH);
+        if (logFile.exists() && logFile.delete()) {
+            System.out.println("삭제: " + logFile.getName());
         }
 
         File[] groupFiles = groupsFolder.listFiles();
@@ -375,11 +384,37 @@ public class JsonMergerMultiple {
         ArrayNode mergedEvents = mapper.createArrayNode();
         long cumulativeMs = 0;
 
+        // 로그 생성을 위한 StringBuilder
+        StringBuilder logBuilder = new StringBuilder();
+        logBuilder.append("[").append(resultFileName).append(".json]\n");
+
+        String prevFileName = "";
         for (int i = 0; i < inputFiles.size(); i++) {
             String filePath = inputFiles.get(i);
             System.out.println("처리 중: " + filePath + " (" + (i + 1) + "/" + inputFiles.size() + ")");
 
-            JsonNode currentJson = mapper.readTree(new File(filePath));
+            // 파일명 추출 (로그용)
+            File f = new File(filePath);
+            String fileName = f.getName().replace(".json", "");
+
+            // 가독성을 위한 줄바꿈 처리
+            // 1. 이전 파일이 캐릭터 변경이었으면 줄바꿈 (반복 종료 의미)
+            // 2. 현재 파일이 주요 시작점(daily_check, world_move 등)이면 줄바꿈
+            if (i > 0) {
+                if (prevFileName.startsWith("changeChar")
+                    ) {
+                    logBuilder.append("\n");
+                }
+            }
+
+            logBuilder.append(fileName);
+            if (i < inputFiles.size() - 1) {
+                logBuilder.append(" > ");
+            }
+            
+            prevFileName = fileName;
+
+            JsonNode currentJson = mapper.readTree(f);
             JsonNode currentRecords = currentJson.get("records");
             JsonNode currentRecord = currentRecords.fields().next().getValue();
             ArrayNode currentEvents = (ArrayNode) currentRecord.get("events");
@@ -423,10 +458,22 @@ public class JsonMergerMultiple {
 
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(outputFile), result);
 
+        // 로그 파일 기록
+        logBuilder.append("\nTotal Duration: ").append(cumulativeMs).append(" ms\n\n");
+        writeLog(logBuilder.toString());
+
         System.out.println("\n=== 합치기 완료 ===");
         System.out.println("총 " + inputFiles.size() + "개 파일 처리");
         System.out.println("총 " + mergedEvents.size() + "개 이벤트");
         System.out.println("결과 파일: " + outputFile);
+    }
+
+    private static void writeLog(String content) {
+        try (java.io.FileWriter fw = new java.io.FileWriter(LOG_FILE_PATH, true)) {
+            fw.write(content);
+        } catch (IOException e) {
+            System.err.println("로그 파일 쓰기 실패: " + e.getMessage());
+        }
     }
 
     /**

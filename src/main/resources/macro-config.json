@@ -1,7 +1,7 @@
 {
   "currentEvent": {
-    "sidun": "event",
-    "dungeon": ""
+    "sidun": "",
+    "dungeon": "quest_icequeen"
   },
   "availableEvents": {
     "sidun": [
@@ -20,7 +20,7 @@
       "sidun_event_swamp"
     ],
     "dungeon": [
-      "event_dugeon_icequeen"
+      "quest_icequeen"
     ]
   }
 }

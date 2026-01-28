@@ -105,7 +105,7 @@ public class Config
 
 		public Builder sidunEvent(String sidunEvent) {
 			if(sidunEvent == null || "".equals(sidunEvent)) {
-				config.sidunEvent = "event";
+				config.sidunEvent = "";
 			} else {
 				config.sidunEvent = sidunEvent;
 				}

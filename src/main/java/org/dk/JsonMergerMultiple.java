@@ -140,6 +140,7 @@ public class JsonMergerMultiple {
     private static String[] buildScripts(String type, Config config, JsonNode configNode) {
         switch (type) {
             case "mainCharacter":
+            case "yoonmain":
                 return ScriptBuilder.makeMainCharacter(config);
             case "subCharacter":
                 return ScriptBuilder.makeSubCharacter(config);

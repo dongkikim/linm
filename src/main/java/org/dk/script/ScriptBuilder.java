@@ -49,6 +49,7 @@ public class ScriptBuilder {
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
             scripts.addAll(Arrays.asList(scriptDonate()));
             scripts.addAll(Arrays.asList(scriptDragonKey()));
+            scripts.addAll(Arrays.asList(scriptPotionStorage()));
 
             if (config.hasScheduleTime()) {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
@@ -133,9 +134,9 @@ public class ScriptBuilder {
         for (int i = 1; i <= numIterations; i++) {
             // 캐릭터 전환을 처음으로 이동
             int nextChar = getNextSubCharacterNumber(i);
-            if (getStartNum() != 1 || i != 1) {
+            //if (getStartNum() != 1 || i != 1) {
                 scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
-            }
+            //}
 
             // 첫 번째 반복에서 그룹 대기 수행
             if (!config.checkFirstGroup()) {
@@ -159,6 +160,7 @@ public class ScriptBuilder {
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
             scripts.addAll(Arrays.asList(scriptDonate()));
             scripts.addAll(Arrays.asList(scriptDragonKey()));
+            scripts.addAll(Arrays.asList(scriptPotionStorage()));
 
             if (config.hasScheduleTime()) {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
@@ -419,7 +421,17 @@ public class ScriptBuilder {
                 "wait_sec_2"
         };
     }
-
+    /**
+     * 고급획득변경 스크립트
+     */
+    public String[] scriptPotionStorage() {
+        return new String[]{
+                "item_change_move_kenmal",
+                "wait_sec_10",
+                "potion_storage",
+                "wait_sec_5"
+        };
+    }
     /**
      * 고급획득변경 스크립트
      */
@@ -622,6 +634,8 @@ public class ScriptBuilder {
      */
     public String[] scriptGiran() {
         return new String[]{
+            config.getReturnHomeKey(),
+            "wait_sec_10",
             config.getReturnKey(),
             "wait_sec_10",
             "dungeon_giran",

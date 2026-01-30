@@ -150,28 +150,45 @@
 
   "groups": {
     "groupA": {
-      "macroScripts": ["oman", "sub_countermagic"],
-      "resultScripts": ["sub_world", "sub_world_statue",
-        "sub_1_groupA", "sub_1_groupA_1hour",
-        "sub_2", "sub_2_1hour",
-        "sub_3", "sub_3_1hour"]
-    },
-    "groupA_event": {
-      "macroScripts": ["oman", "sub_countermagic"],
-      "resultScripts": ["sub_world", "sub_world_statue", "sub_1_groupA_event", "sub_1_groupA_1hour_event", "sub_2_event", "sub_2_1hour_event", "sub_3_event", "sub_3_1hour_event",
-        "sub_1_oman","sub_2_oman","sub_3_oman"
+      "macroScripts": ["sub_countermagic"],
+      "resultScripts": ["sub_world",
+        "sub_1_groupA",
+        "sub_2",
+        "sub_3",
+        "sub_1_oman",
+        "sub_2_oman",
+        "sub_3_oman",
+        "sub_1_groupA_1hour",
+        "sub_2_1hour",
+        "sub_3_1hour",
+        "sub_1_groupA_event",
+        "sub_2_event",
+        "sub_3_event",
+        "sub_world_statue",
+        "sub_1_groupA_1hour_event",
+        "sub_2_1hour_event",
+        "sub_3_1hour_event"
       ]
     },
     "groupB": {
-      "macroScripts": ["oman", "sub_countermagic"],
-      "resultScripts": ["sub_world", "sub_world_statue", "sub_1_groupB", "sub_1_groupB_1hour", "sub_2", "sub_2_1hour", "sub_3", "sub_3_1hour",
-        "sub_1_oman","sub_2_oman","sub_3_oman"
-      ]
-    },
-    "groupB_event": {
-      "macroScripts": ["oman", "sub_countermagic"],
-      "resultScripts": ["sub_world", "sub_world_statue", "sub_1_groupB_event", "sub_1_groupB_1hour_event", "sub_2_event", "sub_2_1hour_event", "sub_3_event", "sub_3_1hour_event",
-        "sub_1_oman","sub_2_oman","sub_3_oman"
+      "macroScripts": ["sub_countermagic"],
+      "resultScripts": ["sub_world",
+        "sub_1_groupB",
+        "sub_2",
+        "sub_3",
+        "sub_1_oman",
+        "sub_2_oman",
+        "sub_3_oman",
+        "sub_1_groupB_1hour",
+        "sub_2_1hour",
+        "sub_3_1hour",
+        "sub_1_groupB_event",
+        "sub_2_event",
+        "sub_3_event",
+        "sub_world_statue",
+        "sub_1_groupB_1hour_event",
+        "sub_2_1hour_event",
+        "sub_3_1hour_event"
       ]
     },
 
@@ -284,12 +301,23 @@
     "yoonmain" :
     {
       "macroScripts": [],
-      "resultScripts": ["main_world",
-        "only_schedule1_7", "yoon1_7","yoon1_7_event",
-        "only_schedule2_7", "yoon2_7","yoon2_7_event",
-        "only_schedule3_7", "yoon3_7","yoon3_7_event",
-        "only_schedule4_7", "yoon4_7","yoon4_7_event",
-        "only_schedule5_7", "yoon5_7","yoon5_7_event"
+      "resultScripts": [
+        "main_world",
+        "yoon1_7",
+        "yoon2_7",
+        "yoon3_7",
+        "yoon4_7",
+        "yoon5_7",
+        "yoon1_7_event",
+        "yoon2_7_event",
+        "yoon3_7_event",
+        "yoon4_7_event",
+        "yoon5_7_event",
+        "only_schedule1_7",
+        "only_schedule2_7",
+        "only_schedule3_7",
+        "only_schedule4_7",
+        "only_schedule5_7"
       ]
     }
   }

@@ -477,8 +477,10 @@ public class ScriptBuilder {
      * 시던 이벤트가 있으면 이벤트 버전(sidun_turnevent, sidun_mimicevent) 사용
      */
     public String[] scriptSidun() {
-        String sidunTurn = config.hasSidunEvent() ? "sidun_turnevent" : "sidun_turn";
-        String sidunMimic = config.hasSidunEvent() ? "sidun_mimicevent" : "sidun_mimic";
+        //String sidunTurn = config.hasSidunEvent() ? "sidun_turnevent" : "sidun_turn";
+        //String sidunMimic = config.hasSidunEvent() ? "sidun_mimicevent" : "sidun_mimic";
+        String sidunTurn = "sidun_turn";
+        String sidunMimic = "sidun_mimic";
 
         return new String[]{
                 sidunTurn,

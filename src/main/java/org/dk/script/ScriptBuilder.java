@@ -109,9 +109,11 @@ public class ScriptBuilder {
         int numIterations = maxNum - startNum + 1;
 
         for (int i = 1; i <= numIterations; i++) {
-            //scripts.addAll(Arrays.asList(scriptScheduleHunting()));
-            scripts.addAll(Arrays.asList(scriptScheduleHuntingItemChange()));
-            
+            scripts.addAll(Arrays.asList(scriptItemFind()));
+            scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            //scripts.addAll(Arrays.asList(scriptScheduleHuntingItemChange()));
+            scripts.addAll(Arrays.asList(scriptItemSave()));
+
             int nextChar = getNextMainCharacterNumber(i);
             scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
         }
@@ -219,6 +221,39 @@ public class ScriptBuilder {
     }
 
     /**
+     * 주말 악몽
+     */
+    public String[] buildWeekendNightMare(Config config) {
+        ArrayList<String> scripts = new ArrayList<>();
+
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
+        int numIterations = maxNum - startNum + 1;
+
+        for (int i = 1; i <= numIterations; i++) {
+
+            scripts.addAll(Arrays.asList(scriptItemFind()));
+            if(getStartNum() == 1 && i ==1 ) {
+                scripts.addAll(Arrays.asList(scriptWeekendNightMare(true)));
+            }
+            else {
+                scripts.addAll(Arrays.asList(scriptWeekendNightMare(false)));
+            }
+            scripts.addAll(Arrays.asList(scriptItemSave()));
+
+            // 캐릭터 변경
+            int nextChar = getNextMainCharacterNumber(i);
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+        }
+
+        scripts.addAll(Arrays.asList(scriptFinish()));
+        return scripts.toArray(new String[0]);
+    }
+
+
+    /**
      * 개별 월드 던전 스크립트 생성 (테베, 티칼, 아틀란)
      * Config 필드 사용: worldDungeon, isSubCharacter, waitTime, potionEvent
      */
@@ -286,6 +321,89 @@ public class ScriptBuilder {
 
                 "power_save_off",
                 returnHome
+            };
+        }
+    }
+
+    /**
+     * find
+     */
+    public String[] scriptItemFind()
+    {
+        return new String[] {
+            "item_change_move_kenmal",
+            "wait_sec_10",
+            "item_change_find",
+            "wait_sec_2",
+            "item_change_choose_1",
+            "wait_sec_2"
+        };
+    }
+
+    /**
+     * save
+     */
+    public String[] scriptItemSave()
+    {
+        return new String[] {
+            "item_change_move_kenmal",
+            "wait_sec_10",
+            "item_change_choose_3",
+            "wait_sec_2",
+            "item_change_save",
+            "wait_sec_10"
+        };
+    }
+    /**
+     * 악몽
+     */
+    public String[] scriptWeekendNightMare(boolean main) {
+
+        if(main) {
+            return new String[]{
+
+                    "world_2_move",
+                    "wait_sec_30",
+                    "world_2_potion",
+                    "wait_sec_10",
+                    "world_wind",
+                    "wait_sec_5",
+
+                    "power_save_on",
+                    "wait_hour_4",
+                    "power_save_off",
+
+                    config.getReturnHomeKey(),
+                    "wait_sec_30",
+            };
+        }
+        else {
+            return new String[]{
+
+                    "world_2_move",
+                    "wait_sec_30",
+                    "world_2_potion",
+                    "wait_sec_10",
+                    "world_wind",
+                    "wait_sec_5",
+
+                    "power_save_on",
+                    "wait_hour_2",
+                    "power_save_off",
+
+                    config.getReturnKey(),
+                    "wait_sec_10",
+                    "world_2_potion",
+                    "wait_sec_10",
+                    "world_wind",
+                    "wait_sec_5",
+
+                    "power_save_on",
+                    "wait_hour_2",
+                    "power_save_off",
+
+                    config.getReturnHomeKey(),
+                    "wait_sec_30",
             };
         }
     }
@@ -387,6 +505,8 @@ public class ScriptBuilder {
 
                 "party_orim",
                 config.getReturnHomeKey(),
+                config.getReturnHomeKey(),
+                "wait_sec_2",
                 config.getReturnHomeKey(),
                 "wait_sec_10"
         };
@@ -640,12 +760,7 @@ public class ScriptBuilder {
             "wait_sec_10",
             "dungeon_giran",
             "power_save_on",
-            "wait_hour_2.5",
-            "power_save_off",
-            "get_quest",
-            "get_mail",
-            "power_save_on",
-            "wait_hour_2.5",
+            "wait_hour_5",
             "power_save_off",
             config.getReturnHomeKey(),
             "wait_sec_10"
@@ -708,6 +823,13 @@ public class ScriptBuilder {
      */
     public static String[] makeWeekendAll(Config config) {
         return buildWeekendAll(config);
+    }
+
+    /**
+     * 주말 악몽 월드 스크립트 생성 (정적 메서드)
+     */
+    public static String[] makeWeekendNightMare(Config config) {
+        return new ScriptBuilder(config).buildWeekendNightMare(config);
     }
 
     /**

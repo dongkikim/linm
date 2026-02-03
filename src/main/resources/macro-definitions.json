@@ -143,7 +143,11 @@
     "world": [
       {"name": "main_world", "type": "weekendAll", "config": {"isSubCharacter": 0, "waitTime": "wait_hour_2", "potionEvent": false}},
       {"name": "sub_world", "type": "weekendAll", "config": {"isSubCharacter": 1, "waitTime": "wait_min_40", "potionEvent": false}},
-      {"name": "sub_world_statue", "type": "weekendAll", "config": {"isSubCharacter": 1, "waitTime": "wait_min_40", "potionEvent": true}}
+      {"name": "sub_world_statue", "type": "weekendAll", "config": {"isSubCharacter": 1, "waitTime": "wait_min_40", "potionEvent": true}},
+      {"name": "main_night1", "type": "weekendNightmare", "config": {"character": "1번", "mainCharRepeat": 5}},
+      {"name": "main_night2", "type": "weekendNightmare", "config": {"character": "2번", "mainCharRepeat": 5}},
+      {"name": "main_night3", "type": "weekendNightmare", "config": {"character": "3번", "mainCharRepeat": 5}},
+      {"name": "main_night4", "type": "weekendNightmare", "config": {"character": "4번", "mainCharRepeat": 5}}
     ]
 
   },
@@ -195,108 +199,119 @@
     "main13": {
       "macroScripts": ["main_countermagic"],
       "resultScripts": ["main_world",
-        "only_schedule1_13", "main1_13",
-        "only_schedule2_13", "main2_13",
-        "only_schedule3_13", "main3_13",
-        "only_schedule4_13", "main4_13",
-        "only_schedule5_13", "main5_13"
+        "main1_13",
+        "main2_13",
+        "main3_13",
+        "main4_13",
+        "main5_13",
+        "main_night1",
+        "main_night2",
+        "main_night3",
+        "main_night4",
+        "only_schedule1_13",
+        "only_schedule2_13",
+        "only_schedule3_13",
+        "only_schedule4_13",
+        "only_schedule5_13"
       ]
     },
     "main13_event": {
       "macroScripts": ["main_countermagic"],
       "resultScripts": ["main_world",
-        "only_schedule1_13", "main1_13_event",
-        "only_schedule2_13", "main2_13_event",
-        "only_schedule3_13", "main3_13_event",
-        "only_schedule4_13", "main4_13_event",
-        "only_schedule5_13", "main5_13_event"
+        "main1_13_event",
+        "main2_13_event",
+        "main3_13_event",
+        "main4_13_event",
+        "main5_13_event",
+        "main_night1",
+        "main_night2",
+        "main_night3",
+        "main_night4",
+        "only_schedule1_13",
+        "only_schedule2_13",
+        "only_schedule3_13",
+        "only_schedule4_13",
+        "only_schedule5_13"
       ]
     },
 
     "main12": {
       "macroScripts": ["main_countermagic"],
       "resultScripts": ["main_world",
-        "only_schedule1_12", "main1_12",
-        "only_schedule2_12", "main2_12",
-        "only_schedule3_12", "main3_12",
-        "only_schedule4_12", "main4_12",
-        "only_schedule5_12", "main5_12"
+        "main1_12",
+        "main2_12",
+        "main3_12",
+        "main4_12",
+        "main5_12",
+        "main_night1",
+        "main_night2",
+        "main_night3",
+        "main_night4",
+        "only_schedule1_12",
+        "only_schedule2_12",
+        "only_schedule3_12",
+        "only_schedule4_12",
+        "only_schedule5_12"
       ]
     },
     "main12_event": {
       "macroScripts": ["main_countermagic"],
       "resultScripts": ["main_world",
-        "only_schedule1_12", "main1_12_event",
-        "only_schedule2_12", "main2_12_event",
-        "only_schedule3_12", "main3_12_event",
-        "only_schedule4_12", "main4_12_event",
-        "only_schedule5_12", "main5_12_event"
+        "main1_12_event",
+        "main2_12_event",
+        "main3_12_event",
+        "main4_12_event",
+        "main5_12_event",
+        "main_night1",
+        "main_night2",
+        "main_night3",
+        "main_night4",
+        "only_schedule1_12",
+        "only_schedule2_12",
+        "only_schedule3_12",
+        "only_schedule4_12",
+        "only_schedule5_12"
       ]
     },
 
     "main11": {
       "macroScripts": ["main_countermagic"],
       "resultScripts": ["main_world",
-        "only_schedule1_11", "main1_11",
-        "only_schedule2_11", "main2_11",
-        "only_schedule3_11", "main3_11",
-        "only_schedule4_11", "main4_11",
-        "only_schedule5_11", "main5_11"
+        "main1_11",
+        "main2_11",
+        "main3_11",
+        "main4_11",
+        "main5_11",
+        "main_night1",
+        "main_night2",
+        "main_night3",
+        "main_night4",
+        "only_schedule1_11",
+        "only_schedule2_11",
+        "only_schedule3_11",
+        "only_schedule4_11",
+        "only_schedule5_11"
       ]
     },
     "main11_event": {
       "macroScripts": ["main_countermagic"],
       "resultScripts": ["main_world",
-        "only_schedule1_11", "main1_11_event",
-        "only_schedule2_11", "main2_11_event",
-        "only_schedule3_11", "main3_11_event",
-        "only_schedule4_11", "main4_11_event",
-        "only_schedule5_11", "main5_11_event"
+        "main1_11_event",
+        "main2_11_event",
+        "main3_11_event",
+        "main4_11_event",
+        "main5_11_event",
+        "main_night1",
+        "main_night2",
+        "main_night3",
+        "main_night4",
+        "only_schedule1_11",
+        "only_schedule2_11",
+        "only_schedule3_11",
+        "only_schedule4_11",
+        "only_schedule5_11"
       ]
     },
-
-    "main10": {
-      "macroScripts": ["main_countermagic"],
-      "resultScripts": ["main_world",
-        "only_schedule1_10", "main1_10",
-        "only_schedule2_10", "main2_10",
-        "only_schedule3_10", "main3_10",
-        "only_schedule4_10", "main4_10",
-        "only_schedule5_10", "main5_10"
-      ]
-    },
-    "main10_event": {
-      "macroScripts": ["main_countermagic"],
-      "resultScripts": ["main_world",
-        "only_schedule1_10", "main1_10_event",
-        "only_schedule2_10", "main2_10_event",
-        "only_schedule3_10", "main3_10_event",
-        "only_schedule4_10", "main4_10_event",
-        "only_schedule5_10", "main5_10_event"
-      ]
-    },
-
-    "main9": {
-      "macroScripts": ["main_countermagic"],
-      "resultScripts": ["main_world",
-        "only_schedule1_9", "main1_9",
-        "only_schedule2_9", "main2_9",
-        "only_schedule3_9", "main3_9",
-        "only_schedule4_9", "main4_9",
-        "only_schedule5_9", "main5_9"
-      ]
-    },
-    "main9_event": {
-      "macroScripts": ["main_countermagic"],
-      "resultScripts": ["main_world",
-        "only_schedule1_9", "main1_9_event",
-        "only_schedule2_9", "main2_9_event",
-        "only_schedule3_9", "main3_9_event",
-        "only_schedule4_9", "main4_9_event",
-        "only_schedule5_9", "main5_9_event"
-      ]
-    },
-
 
     "yoonmain" :
     {

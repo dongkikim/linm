@@ -2,7 +2,7 @@
   "records": {
     "r8": {
       "repeat": {
-        "count": "1",
+        "count": "-1",
         "duration": "0",
         "sel": "count"
       },

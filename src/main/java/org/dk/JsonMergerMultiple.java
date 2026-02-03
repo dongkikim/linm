@@ -148,6 +148,8 @@ public class JsonMergerMultiple {
                 return ScriptBuilder.makeScheduleOnly(config);
             case "weekendAll":
                 return ScriptBuilder.makeWeekendAll(config);
+            case "weekendNightmare":
+                return ScriptBuilder.makeWeekendNightMare(config);
             case "oman":
                 return ScriptBuilder.makeOman(config);
             default:

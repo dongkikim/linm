@@ -141,7 +141,7 @@ public class ScriptBuilder {
             //}
 
             // 첫 번째 반복에서 그룹 대기 수행
-            if (!config.checkFirstGroup()) {
+            if (!config.checkFirstGroup() && i==1) {
                 scripts.addAll(Arrays.asList(scriptGroupDelay()));
             }
 
@@ -361,7 +361,8 @@ public class ScriptBuilder {
 
         if(main) {
             return new String[]{
-
+                    config.getReturnHomeKey(),
+                    "wait_sec_10",
                     "world_2_move",
                     "wait_sec_30",
                     "world_2_potion",
@@ -379,7 +380,8 @@ public class ScriptBuilder {
         }
         else {
             return new String[]{
-
+                    config.getReturnHomeKey(),
+                    "wait_sec_10",
                     "world_2_move",
                     "wait_sec_30",
                     "world_2_potion",

@@ -1,7 +1,7 @@
 {
   "currentEvent": {
-    "sidun": "sidun_event_rabbitgirl",
-    "dungeon": ""
+    "sidun": "",
+    "dungeon": "event_dugeon_click"
   },
   "availableEvents": {
     "sidun": [

@@ -21,9 +21,100 @@ public class ScriptBuilder {
     // ================================
 
     /**
-     * 메인 캐릭터 스크립트 생성
+     * 메인 캐릭터 스크립트 생성 구버전
      */
     public String[] buildMainCharacter() {
+        ArrayList<String> scripts = new ArrayList<>();
+
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
+        int numIterations = maxNum - startNum + 1;
+
+        if (getStartNum() == 1) {
+            scripts.addAll(Arrays.asList(scriptDailyCheck()));
+            scripts.addAll(Arrays.asList(scriptBuyAll()));
+        }
+
+        for (int i = 1; i <= numIterations; i++) {
+
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
+            //통합버전제외
+            //scripts.addAll(Arrays.asList(scriptSidunPadun()));
+
+            scripts.addAll(Arrays.asList(scriptSidun()));
+            scripts.addAll(Arrays.asList(scriptPadun()));
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptMakeFavorite()));
+            scripts.addAll(Arrays.asList(scriptDonate()));
+            scripts.addAll(Arrays.asList(scriptDragonKey()));
+            scripts.addAll(Arrays.asList(scriptPotionStorage()));
+
+            if (config.hasScheduleTime()) {
+                scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            }
+
+            // 캐릭터 변경
+            int nextChar = getNextMainCharacterNumber(i);
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+        }
+
+        scripts.addAll(Arrays.asList(scriptFinish()));
+        return scripts.toArray(new String[0]);
+    }
+
+    /**
+     * 메인 캐릭터 스크립트 생성 구버전
+     */
+    public String[] buildMainCharacterNew() {
+        ArrayList<String> scripts = new ArrayList<>();
+
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
+        int numIterations = maxNum - startNum + 1;
+
+        if (getStartNum() == 1) {
+            scripts.addAll(Arrays.asList(scriptDailyCheck()));
+            scripts.addAll(Arrays.asList(scriptBuyAll()));
+        }
+
+        for (int i = 1; i <= numIterations; i++) {
+
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
+            //통합버전제외
+            //scripts.addAll(Arrays.asList(scriptSidunPadun()));
+
+            scripts.addAll(Arrays.asList(scriptSidun()));
+            scripts.addAll(Arrays.asList(scriptPadun()));
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptMakeFavorite()));
+
+            //1번만 5회 나머지 1회
+            if( getStartNum() == 1 && i == 1 )
+                scripts.addAll(Arrays.asList(scriptDonate()));
+            else
+                scripts.addAll(Arrays.asList(scriptDonateOnes()));
+
+            scripts.addAll(Arrays.asList(scriptDragonKey()));
+            scripts.addAll(Arrays.asList(scriptPotionStorage()));
+
+            if (config.hasScheduleTime()) {
+                scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            }
+
+            // 캐릭터 변경
+            int nextChar = getNextMainCharacterNumber(i);
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+        }
+
+        scripts.addAll(Arrays.asList(scriptFinish()));
+        return scripts.toArray(new String[0]);
+    }
+
+    public String[] buildYoonMainCharacter() {
         ArrayList<String> scripts = new ArrayList<>();
 
         scripts.addAll(Arrays.asList(scriptInit()));
@@ -123,6 +214,35 @@ public class ScriptBuilder {
     }
 
     /**
+     * 스케쥴 전용 스크립트 생성
+     */
+    public String[] buildScheduleOnlyPass() {
+        ArrayList<String> scripts = new ArrayList<>();
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        int startNum = getStartNum();
+        int maxNum = config.getMainCharRepeat();
+        int numIterations = maxNum - startNum + 1;
+
+        for (int i = 1; i <= numIterations; i++) {
+            scripts.addAll(Arrays.asList(scriptItemFind()));
+            scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            //scripts.addAll(Arrays.asList(scriptScheduleHuntingItemChange()));
+            scripts.addAll(Arrays.asList(scriptItemSave()));
+
+            if(startNum == 1 && i == 1)
+            {
+                i=5;
+            }
+            int nextChar = getNextMainCharacterNumber(i);
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+        }
+
+        scripts.addAll(Arrays.asList(scriptFinish()));
+        return scripts.toArray(new String[0]);
+    }
+
+    /**
      * 보조 캐릭터 스크립트 생성
      */
     public String[] buildSubCharacter() {
@@ -135,9 +255,128 @@ public class ScriptBuilder {
 
         for (int i = 1; i <= numIterations; i++) {
             // 캐릭터 전환을 처음으로 이동
-            int nextChar = getNextSubCharacterNumber(i);
+            int nextChar = getNextSubCharacterNumber(i,3);
             //if (getStartNum() != 1 || i != 1) {
                 scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+            //}
+
+            // 첫 번째 반복에서 그룹 대기 수행
+            if (!config.checkFirstGroup() && i==1) {
+                scripts.addAll(Arrays.asList(scriptGroupDelay()));
+            }
+
+            if(getStartNum() == 1 && i ==1 ) {
+                scripts.addAll(Arrays.asList(scriptDailyCheck()));
+                scripts.addAll(Arrays.asList(scriptBuyAll()));
+            }
+
+
+            // 이벤트시던, 시던파던
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
+
+            // 통합버전제외
+            //scripts.addAll(Arrays.asList(scriptSidunPadun()));
+            scripts.addAll(Arrays.asList(scriptSidun()));
+            scripts.addAll(Arrays.asList(scriptPadun()));
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptMakeFavorite()));
+            scripts.addAll(Arrays.asList(scriptDonateOnes()));
+            scripts.addAll(Arrays.asList(scriptDragonKey()));
+            scripts.addAll(Arrays.asList(scriptPotionStorage()));
+
+            if (config.hasScheduleTime()) {
+                scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            }
+            scripts.addAll(Arrays.asList(scriptItemGreen()));
+            // 기란던전
+            scripts.addAll(Arrays.asList(scriptGiran("wait_hour_5")));
+        }
+
+        // 모든 반복 종료 후 1번 캐릭터로 전환
+        scripts.addAll(Arrays.asList(scriptCharChange(1)));
+
+        scripts.addAll(Arrays.asList(scriptStoryIsland("prevstory_gisa")));
+        scripts.addAll(Arrays.asList(scriptFinish()));
+
+        return scripts.toArray(new String[0]);
+    }
+
+    /**
+     * 보조 캐릭터 스크립트 생성
+     */
+    public String[] buildSubCharacterNew() {
+        ArrayList<String> scripts = new ArrayList<>();
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        int startNum = getStartNum();
+        // 1->3회(1,2,3), 2->2회(2,3), 3->1회(3)
+        int numIterations = 5 - startNum;
+
+        for (int i = 1; i <= numIterations; i++) {
+            // 캐릭터 전환을 처음으로 이동
+            int nextChar = getNextSubCharacterNumber(i,4);
+            //if (getStartNum() != 1 || i != 1) {
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
+            //}
+
+            // 첫 번째 반복에서 그룹 대기 수행
+            if (!config.checkFirstGroup() && i==1) {
+                scripts.addAll(Arrays.asList(scriptGroupDelay()));
+            }
+
+            if(getStartNum() == 1 && i ==1 ) {
+                scripts.addAll(Arrays.asList(scriptDailyCheck()));
+                scripts.addAll(Arrays.asList(scriptBuyAll()));
+            }
+
+
+            // 이벤트시던, 시던파던
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
+
+            // 통합버전제외
+            //scripts.addAll(Arrays.asList(scriptSidunPadun()));
+            scripts.addAll(Arrays.asList(scriptSidun()));
+            scripts.addAll(Arrays.asList(scriptPadun()));
+            scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptMakeFavorite()));
+            scripts.addAll(Arrays.asList(scriptDonateOnes()));
+            scripts.addAll(Arrays.asList(scriptDragonKey()));
+            scripts.addAll(Arrays.asList(scriptPotionStorage()));
+
+            if (config.hasScheduleTime()) {
+                scripts.addAll(Arrays.asList(scriptScheduleHunting()));
+            }
+            scripts.addAll(Arrays.asList(scriptItemGreen()));
+            // 기란던전
+            if( i < numIterations)
+                scripts.addAll(Arrays.asList(scriptGiran("wait_hour_4_4")));
+        }
+
+        // 모든 반복 종료 후 1번 캐릭터로 전환
+        scripts.addAll(Arrays.asList(scriptCharChange(1)));
+
+        scripts.addAll(Arrays.asList(scriptStoryIsland("prevstory_gisa")));
+        scripts.addAll(Arrays.asList(scriptFinish()));
+
+        return scripts.toArray(new String[0]);
+    }
+
+    /**
+     * 윤제 보조 캐릭터 스크립트 생성
+     */
+    public String[] buildYoonSubCharacter() {
+        ArrayList<String> scripts = new ArrayList<>();
+        scripts.addAll(Arrays.asList(scriptInit()));
+
+        int startNum = getStartNum();
+        // 1->3회(1,2,3), 2->2회(2,3), 3->1회(3)
+        int numIterations = 4 - startNum;
+
+        for (int i = 1; i <= numIterations; i++) {
+            // 캐릭터 전환을 처음으로 이동
+            int nextChar = getNextSubCharacterNumber(i,3);
+            //if (getStartNum() != 1 || i != 1) {
+            scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
             //}
 
             // 첫 번째 반복에서 그룹 대기 수행
@@ -169,7 +408,7 @@ public class ScriptBuilder {
             }
             scripts.addAll(Arrays.asList(scriptItemGreen()));
             // 기란던전
-            scripts.addAll(Arrays.asList(scriptGiran()));
+            scripts.addAll(Arrays.asList(scriptGiran("wait_hour_5")));
         }
 
         // 모든 반복 종료 후 1번 캐릭터로 전환
@@ -537,6 +776,16 @@ public class ScriptBuilder {
     }
 
     /**
+     * 기부 스크립트 1회만
+     */
+    public String[] scriptDonateOnes() {
+        return new String[]{
+                "donate_1_click",
+                "wait_sec_2"
+        };
+    }
+
+    /**
      * 용옥 스크립트
      */
     public String[] scriptDragonKey() {
@@ -729,14 +978,14 @@ public class ScriptBuilder {
     /**
      * 보조 캐릭터용 다음 번호 계산 (3개 캐릭터 순환)
      */
-    private int getNextSubCharacterNumber(int repeatIndex) {
+    private int getNextSubCharacterNumber(int repeatIndex, int totalNum) {
         int startNum = getStartNum();
         
         // (startNum + repeatIndex - 2) % 3 + 1
         // 예: start=1, i=1 -> (1+1-2)%3 + 1 = 1
         // 예: start=1, i=4 -> (1+4-2)%3 + 1 = 1
         // 예: start=2, i=1 -> (2+1-2)%3 + 1 = 2
-        return (startNum + repeatIndex - 2) % 3 + 1;
+        return (startNum + repeatIndex - 2) % totalNum + 1;
     }
 
     /**
@@ -756,7 +1005,7 @@ public class ScriptBuilder {
     /**
      * 기란 던전 스크립트
      */
-    public String[] scriptGiran() {
+    public String[] scriptGiran(String waitTIme) {
         return new String[]{
             config.getReturnHomeKey(),
             "wait_sec_10",
@@ -764,7 +1013,7 @@ public class ScriptBuilder {
             "wait_sec_10",
             "dungeon_giran",
             "power_save_on",
-            "wait_hour_5",
+                waitTIme,
             "power_save_off",
             config.getReturnHomeKey(),
             "wait_sec_10"
@@ -805,14 +1054,28 @@ public class ScriptBuilder {
      * 메인 캐릭터 스크립트 생성 (정적 메서드)
      */
     public static String[] makeMainCharacter(Config config) {
-        return new ScriptBuilder(config).buildMainCharacter();
+        return new ScriptBuilder(config).buildMainCharacterNew();
+    }
+
+    /**
+     * 윤제 메인캐릭터
+     */
+    public static String[] makeYoonMainCharacter(Config config) {
+        return new ScriptBuilder(config).buildYoonMainCharacter();
     }
 
     /**
      * 보조 캐릭터 스크립트 생성 (정적 메서드)
      */
     public static String[] makeSubCharacter(Config config) {
-        return new ScriptBuilder(config).buildSubCharacter();
+        return new ScriptBuilder(config).buildSubCharacterNew();
+    }
+
+    /**
+     * 윤제 보조 캐릭터 스크립트 생성 (정적 메서드)
+     */
+    public static String[] yoonmakeSubCharacter(Config config) {
+        return new ScriptBuilder(config).buildYoonSubCharacter();
     }
 
     /**
@@ -821,6 +1084,14 @@ public class ScriptBuilder {
     public static String[] makeScheduleOnly(Config config) {
         return new ScriptBuilder(config).buildScheduleOnly();
     }
+
+    /**
+     * 스케쥴 전용 스크립트 생성 (정적 메서드)
+     */
+    public static String[] makeScheduleOnly_Pass(Config config) {
+        return new ScriptBuilder(config).buildScheduleOnlyPass();
+    }
+
 
     /**
      * 주말 전체 월드 스크립트 생성 (정적 메서드)

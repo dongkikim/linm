@@ -57,16 +57,16 @@
       {"name": "main5_9", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 9, "scheduleTime": "00h"}},
 
 
-      {"name": "yoon1_7_event", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
-      {"name": "yoon2_7_event", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
-      {"name": "yoon3_7_event", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
-      {"name": "yoon4_7_event", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
-      {"name": "yoon5_7_event", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
-      {"name": "yoon1_7", "type": "mainCharacter", "config": {"character": "1번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
-      {"name": "yoon2_7", "type": "mainCharacter", "config": {"character": "2번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
-      {"name": "yoon3_7", "type": "mainCharacter", "config": {"character": "3번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
-      {"name": "yoon4_7", "type": "mainCharacter", "config": {"character": "4번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
-      {"name": "yoon5_7", "type": "mainCharacter", "config": {"character": "5번", "mainCharRepeat": 7, "scheduleTime": "00m"}}
+      {"name": "yoon1_7_event", "type": "yoonmainCharacter", "config": {"character": "1번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon2_7_event", "type": "yoonmainCharacter", "config": {"character": "2번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon3_7_event", "type": "yoonmainCharacter", "config": {"character": "3번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon4_7_event", "type": "yoonmainCharacter", "config": {"character": "4번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon5_7_event", "type": "yoonmainCharacter", "config": {"character": "5번", "mainCharRepeat": 7, "useCurrentEvent": true, "scheduleTime": "00m"}},
+      {"name": "yoon1_7", "type": "yoonmainCharacter", "config": {"character": "1번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon2_7", "type": "yoonmainCharacter", "config": {"character": "2번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon3_7", "type": "yoonmainCharacter", "config": {"character": "3번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon4_7", "type": "yoonmainCharacter", "config": {"character": "4번", "mainCharRepeat": 7, "scheduleTime": "00m"}},
+      {"name": "yoon5_7", "type": "yoonmainCharacter", "config": {"character": "5번", "mainCharRepeat": 7, "scheduleTime": "00m"}}
 
     ],
 
@@ -105,8 +105,14 @@
       {"name": "only_schedule2_7", "type": "scheduleOnly", "config": {"character": "2번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
       {"name": "only_schedule3_7", "type": "scheduleOnly", "config": {"character": "3번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
       {"name": "only_schedule4_7", "type": "scheduleOnly", "config": {"character": "4번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
-      {"name": "only_schedule5_7", "type": "scheduleOnly", "config": {"character": "5번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}}
+      {"name": "only_schedule5_7", "type": "scheduleOnly", "config": {"character": "5번","mainCharRepeat": 7, "scheduleTime": "01h", "scheduleOnly": true}},
 
+
+      {"name": "only_schedule1_6_13", "type": "scheduleOnly_pass", "config": {"character": "1번","mainCharRepeat": 13, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule6_6_13", "type": "scheduleOnly_pass", "config": {"character": "6번","mainCharRepeat": 13, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule7_6_13", "type": "scheduleOnly_pass", "config": {"character": "7번","mainCharRepeat": 13, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule8_6_13", "type": "scheduleOnly_pass", "config": {"character": "8번","mainCharRepeat": 13, "scheduleTime": "01h", "scheduleOnly": true}},
+      {"name": "only_schedule9_6_13", "type": "scheduleOnly_pass", "config": {"character": "9번","mainCharRepeat": 13, "scheduleTime": "01h", "scheduleOnly": true}}
     ],
 
     "sub_groupA": [
@@ -128,16 +134,49 @@
       {"name": "sub_2", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h"}},
       {"name": "sub_3_1hour", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h"}},
       {"name": "sub_3", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h"}},
+      {"name": "sub_4_1hour", "type": "subCharacter", "config": {"character": "4번", "group": "A", "scheduleTime": "01h"}},
+      {"name": "sub_4", "type": "subCharacter", "config": {"character": "4번", "group": "A", "scheduleTime": "00h"}},
       {"name": "sub_2_1hour_event", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "01h","useCurrentEvent": true }},
       {"name": "sub_2_event", "type": "subCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h","useCurrentEvent": true }},
       {"name": "sub_3_1hour_event", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h","useCurrentEvent": true }},
-      {"name": "sub_3_event", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h", "useCurrentEvent": true }}
+      {"name": "sub_3_event", "type": "subCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h", "useCurrentEvent": true }},
+      {"name": "sub_4_1hour_event", "type": "subCharacter", "config": {"character": "4번", "group": "A", "scheduleTime": "01h","useCurrentEvent": true }},
+      {"name": "sub_4_event", "type": "subCharacter", "config": {"character": "4번", "group": "A", "scheduleTime": "00h", "useCurrentEvent": true }}
     ],
+
+
+    "yoon_sub_groupA": [
+      {"name": "yoon_sub_1_groupA_1hour", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "01h"}},
+      {"name": "yoon_sub_1_groupA", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "00h"}},
+      {"name": "yoon_sub_1_groupA_1hour_event", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "01h","useCurrentEvent": true}},
+      {"name": "yoon_sub_1_groupA_event", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "A", "scheduleTime": "00h","useCurrentEvent": true}}
+    ],
+
+    "yoon_sub_groupB": [
+      {"name": "yoon_sub_1_groupB_1hour", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "01h"}},
+      {"name": "yoon_sub_1_groupB", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "00h"}},
+      {"name": "yoon_sub_1_groupB_1hour_event", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "01h","useCurrentEvent": true}},
+      {"name": "yoon_sub_1_groupB_event", "type": "yoonsubCharacter", "config": {"character": "1번", "group": "B", "scheduleTime": "00h","useCurrentEvent": true}}
+    ],
+
+    "yoon_sub_other": [
+      {"name": "yoon_sub_2_1hour", "type": "yoonsubCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "01h"}},
+      {"name": "yoon_sub_2", "type": "yoonsubCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h"}},
+      {"name": "yoon_sub_3_1hour", "type": "yoonsubCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h"}},
+      {"name": "yoon_sub_3", "type": "yoonsubCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h"}},
+      {"name": "yoon_sub_2_1hour_event", "type": "yoonsubCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "01h","useCurrentEvent": true }},
+      {"name": "yoon_sub_2_event", "type": "yoonsubCharacter", "config": {"character": "2번", "group": "A", "scheduleTime": "00h","useCurrentEvent": true }},
+      {"name": "yoon_sub_3_1hour_event", "type": "yoonsubCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "01h","useCurrentEvent": true }},
+      {"name": "yoon_sub_3_event", "type": "yoonsubCharacter", "config": {"character": "3번", "group": "A", "scheduleTime": "00h", "useCurrentEvent": true }}
+    ],
+
+
 
     "sub_oman": [
       {"name": "sub_1_oman", "type": "oman", "config": {"character": "1번"}},
       {"name": "sub_2_oman", "type": "oman", "config": {"character": "2번"}},
-      {"name": "sub_3_oman", "type": "oman", "config": {"character": "3번"}}
+      {"name": "sub_3_oman", "type": "oman", "config": {"character": "3번"}},
+      {"name": "sub_4_oman", "type": "oman", "config": {"character": "4번"}}
     ],
 
     "world": [
@@ -160,21 +199,51 @@
         "sub_1_groupB",
         "sub_2",
         "sub_3",
+        "sub_4",
         "sub_1_oman",
         "sub_2_oman",
         "sub_3_oman",
+        "sub_4_oman",
         "sub_1_groupA_event",
         "sub_1_groupB_event",
         "sub_2_event",
         "sub_3_event",
+        "sub_4_event",
         "sub_1_groupA_1hour",
         "sub_1_groupB_1hour",
         "sub_2_1hour",
         "sub_3_1hour",
+        "sub_4_1hour",
         "sub_1_groupA_1hour_event",
         "sub_1_groupB_1hour_event",
         "sub_2_1hour_event",
-        "sub_3_1hour_event"
+        "sub_3_1hour_event",
+        "sub_4_1hour_event"
+      ]
+    },
+
+    "yoonsubGroup": {
+      "macroScripts": ["sub_countermagic"],
+      "resultScripts": ["sub_world","sub_world_statue",
+        "yoon_sub_1_groupA",
+        "yoon_sub_1_groupB",
+        "yoon_sub_2",
+        "yoon_sub_3",
+        "sub_1_oman",
+        "sub_2_oman",
+        "sub_3_oman",
+        "yoon_sub_1_groupA_event",
+        "yoon_sub_1_groupB_event",
+        "yoon_sub_2_event",
+        "yoon_sub_3_event",
+        "yoon_sub_1_groupA_1hour",
+        "yoon_sub_1_groupB_1hour",
+        "yoon_sub_2_1hour",
+        "yoon_sub_3_1hour",
+        "yoon_sub_1_groupA_1hour_event",
+        "yoon_sub_1_groupB_1hour_event",
+        "yoon_sub_2_1hour_event",
+        "yoon_sub_3_1hour_event"
       ]
     },
 
@@ -194,7 +263,12 @@
         "only_schedule2_13",
         "only_schedule3_13",
         "only_schedule4_13",
-        "only_schedule5_13"
+        "only_schedule5_13",
+        "only_schedule1_6_13",
+        "only_schedule6_6_13",
+        "only_schedule7_6_13",
+        "only_schedule8_6_13",
+        "only_schedule9_6_13"
       ]
     },
     "main13_event": {
@@ -213,7 +287,12 @@
         "only_schedule2_13",
         "only_schedule3_13",
         "only_schedule4_13",
-        "only_schedule5_13"
+        "only_schedule5_13",
+        "only_schedule1_6_13",
+        "only_schedule6_6_13",
+        "only_schedule7_6_13",
+        "only_schedule8_6_13",
+        "only_schedule9_6_13"
       ]
     },
 
@@ -233,7 +312,12 @@
         "only_schedule2_12",
         "only_schedule3_12",
         "only_schedule4_12",
-        "only_schedule5_12"
+        "only_schedule5_12",
+        "only_schedule1_6_13",
+        "only_schedule6_6_13",
+        "only_schedule7_6_13",
+        "only_schedule8_6_13",
+        "only_schedule9_6_13"
       ]
     },
     "main12_event": {
@@ -252,7 +336,12 @@
         "only_schedule2_12",
         "only_schedule3_12",
         "only_schedule4_12",
-        "only_schedule5_12"
+        "only_schedule5_12",
+        "only_schedule1_6_13",
+        "only_schedule6_6_13",
+        "only_schedule7_6_13",
+        "only_schedule8_6_13",
+        "only_schedule9_6_13"
       ]
     },
 
@@ -272,7 +361,12 @@
         "only_schedule2_11",
         "only_schedule3_11",
         "only_schedule4_11",
-        "only_schedule5_11"
+        "only_schedule5_11",
+        "only_schedule1_6_13",
+        "only_schedule6_6_13",
+        "only_schedule7_6_13",
+        "only_schedule8_6_13",
+        "only_schedule9_6_13"
       ]
     },
     "main11_event": {
@@ -291,7 +385,17 @@
         "only_schedule2_11",
         "only_schedule3_11",
         "only_schedule4_11",
-        "only_schedule5_11"
+        "only_schedule5_11",
+        "only_schedule1_6_13",
+        "only_schedule6_6_13",
+        "only_schedule7_6_13",
+        "only_schedule8_6_13",
+        "only_schedule9_6_13",
+        "only_schedule1_6_13",
+        "only_schedule6_6_13",
+        "only_schedule7_6_13",
+        "only_schedule8_6_13",
+        "only_schedule9_6_13"
       ]
     },
 

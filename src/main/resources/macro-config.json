@@ -1,7 +1,7 @@
 {
   "currentEvent": {
-    "sidun": "",
-    "dungeon": "event_dugeon_click"
+    "sidun": "sidun_event_esem",
+    "dungeon": ""
   },
   "availableEvents": {
     "sidun": [

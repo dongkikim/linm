@@ -39,13 +39,13 @@ public class ScriptBuilder {
 
         for (int i = 1; i <= numIterations; i++) {
 
-            scripts.addAll(Arrays.asList(scriptEventSidun()));
             //통합버전제외
             //scripts.addAll(Arrays.asList(scriptSidunPadun()));
 
             scripts.addAll(Arrays.asList(scriptSidun()));
             scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
             scripts.addAll(Arrays.asList(scriptDonate()));
             scripts.addAll(Arrays.asList(scriptDragonKey()));
@@ -83,13 +83,13 @@ public class ScriptBuilder {
 
         for (int i = 1; i <= numIterations; i++) {
 
-            scripts.addAll(Arrays.asList(scriptEventSidun()));
             //통합버전제외
             //scripts.addAll(Arrays.asList(scriptSidunPadun()));
 
             scripts.addAll(Arrays.asList(scriptSidun()));
             scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
 
             //1번만 5회 나머지 1회
@@ -130,13 +130,13 @@ public class ScriptBuilder {
 
         for (int i = 1; i <= numIterations; i++) {
 
-            scripts.addAll(Arrays.asList(scriptEventSidun()));
             //통합버전제외
             //scripts.addAll(Arrays.asList(scriptSidunPadun()));
 
             scripts.addAll(Arrays.asList(scriptSidun()));
             scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
             scripts.addAll(Arrays.asList(scriptDonate()));
             scripts.addAll(Arrays.asList(scriptDragonKey()));
@@ -173,8 +173,8 @@ public class ScriptBuilder {
         for (int i = 1; i <= numIterations; i++) {
 
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
-            scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptSidunPadun()));
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
 
             if (config.hasScheduleTime()) {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
@@ -209,6 +209,7 @@ public class ScriptBuilder {
             scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
         }
 
+        scripts.addAll(Arrays.asList(scriptItemFind()));
         scripts.addAll(Arrays.asList(scriptFinish()));
         return scripts.toArray(new String[0]);
     }
@@ -238,6 +239,7 @@ public class ScriptBuilder {
             scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
         }
 
+        scripts.addAll(Arrays.asList(scriptItemFind()));
         scripts.addAll(Arrays.asList(scriptFinish()));
         return scripts.toArray(new String[0]);
     }
@@ -271,14 +273,14 @@ public class ScriptBuilder {
             }
 
 
-            // 이벤트시던, 시던파던
-            scripts.addAll(Arrays.asList(scriptEventSidun()));
 
             // 통합버전제외
             //scripts.addAll(Arrays.asList(scriptSidunPadun()));
             scripts.addAll(Arrays.asList(scriptSidun()));
             scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            // 이벤트시던, 시던파던
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
             scripts.addAll(Arrays.asList(scriptDonateOnes()));
             scripts.addAll(Arrays.asList(scriptDragonKey()));
@@ -313,16 +315,16 @@ public class ScriptBuilder {
         int numIterations = 5 - startNum;
 
         for (int i = 1; i <= numIterations; i++) {
+            // 첫 번째 반복에서 그룹 대기 수행
+            if (!config.checkFirstGroup() && i==1) {
+                scripts.addAll(Arrays.asList(scriptGroupDelay()));
+            }
             // 캐릭터 전환을 처음으로 이동
             int nextChar = getNextSubCharacterNumber(i,4);
             //if (getStartNum() != 1 || i != 1) {
             scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
             //}
 
-            // 첫 번째 반복에서 그룹 대기 수행
-            if (!config.checkFirstGroup() && i==1) {
-                scripts.addAll(Arrays.asList(scriptGroupDelay()));
-            }
 
             if(getStartNum() == 1 && i ==1 ) {
                 scripts.addAll(Arrays.asList(scriptDailyCheck()));
@@ -330,14 +332,14 @@ public class ScriptBuilder {
             }
 
 
-            // 이벤트시던, 시던파던
-            scripts.addAll(Arrays.asList(scriptEventSidun()));
 
             // 통합버전제외
             //scripts.addAll(Arrays.asList(scriptSidunPadun()));
             scripts.addAll(Arrays.asList(scriptSidun()));
             scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            // 이벤트시던, 시던파던
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
             scripts.addAll(Arrays.asList(scriptDonateOnes()));
             scripts.addAll(Arrays.asList(scriptDragonKey()));
@@ -347,8 +349,8 @@ public class ScriptBuilder {
                 scripts.addAll(Arrays.asList(scriptScheduleHunting()));
             }
             scripts.addAll(Arrays.asList(scriptItemGreen()));
-            // 기란던전
-            if( i < numIterations)
+            // 기란던전제외
+            //if( i < numIterations)
                 scripts.addAll(Arrays.asList(scriptGiran("wait_hour_4_4")));
         }
 
@@ -370,11 +372,11 @@ public class ScriptBuilder {
 
         int startNum = getStartNum();
         // 1->3회(1,2,3), 2->2회(2,3), 3->1회(3)
-        int numIterations = 4 - startNum;
+        int numIterations = 5 - startNum;
 
         for (int i = 1; i <= numIterations; i++) {
             // 캐릭터 전환을 처음으로 이동
-            int nextChar = getNextSubCharacterNumber(i,3);
+            int nextChar = getNextSubCharacterNumber(i,4);
             //if (getStartNum() != 1 || i != 1) {
             scripts.addAll(Arrays.asList(scriptCharChange(nextChar)));
             //}
@@ -390,16 +392,15 @@ public class ScriptBuilder {
             }
 
 
-            // 이벤트시던, 시던파던
-            scripts.addAll(Arrays.asList(scriptEventSidun()));
-
             // 통합버전제외
             //scripts.addAll(Arrays.asList(scriptSidunPadun()));
             scripts.addAll(Arrays.asList(scriptSidun()));
             scripts.addAll(Arrays.asList(scriptPadun()));
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
+            // 이벤트시던, 시던파던
+            scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
-            scripts.addAll(Arrays.asList(scriptDonate()));
+            scripts.addAll(Arrays.asList(scriptDonateOnes()));
             scripts.addAll(Arrays.asList(scriptDragonKey()));
             scripts.addAll(Arrays.asList(scriptPotionStorage()));
 
@@ -408,7 +409,8 @@ public class ScriptBuilder {
             }
             scripts.addAll(Arrays.asList(scriptItemGreen()));
             // 기란던전
-            scripts.addAll(Arrays.asList(scriptGiran("wait_hour_5")));
+            if( i < numIterations)
+                scripts.addAll(Arrays.asList(scriptGiran("wait_hour_4_4")));
         }
 
         // 모든 반복 종료 후 1번 캐릭터로 전환
@@ -704,6 +706,7 @@ public class ScriptBuilder {
     public String[] scriptEventSidun() {
         if (config.hasSidunEvent() && !"event".equals(config.getSidunEvent())) {
             return new String[]{
+                config.getAinKey(),
                 config.getSidunEvent(),
                 config.getReturnHomeKey(),
                 config.getReturnHomeKey(),
@@ -770,7 +773,7 @@ public class ScriptBuilder {
      */
     public String[] scriptDonate() {
         return new String[]{
-                "donate",
+                "donate_5_click",
                 "wait_sec_2"
         };
     }
@@ -845,7 +848,7 @@ public class ScriptBuilder {
             "wait_sec_10",
 
             "make_favorite",
-            "donate",
+            "donate_5_click",
 
             "wait_sec_2",
             config.getDragonKey(),

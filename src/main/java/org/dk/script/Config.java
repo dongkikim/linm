@@ -250,6 +250,11 @@ public class Config
 		return BUTTON_KEY_MAP.getOrDefault(returnHomeKey, "button_9");
 	}
 
+	public String getAinKey() {
+		return BUTTON_KEY_MAP.getOrDefault(returnHomeKey, "button_7");
+	}
+
+
 	public String getReturnKey() {
 		return BUTTON_KEY_MAP.getOrDefault(returnKey, "button_8");
 	}

@@ -87,7 +87,13 @@ public class ScriptBuilder {
             //scripts.addAll(Arrays.asList(scriptSidunPadun()));
 
             scripts.addAll(Arrays.asList(scriptSidun()));
-            scripts.addAll(Arrays.asList(scriptPadun()));
+
+            //8번부터 파던 진행
+            if( i > 8-getStartNum() )
+                scripts.addAll(Arrays.asList(scriptPadunDeath()));
+
+            scripts.addAll(Arrays.asList(scriptPadunOrim()));
+
             scripts.addAll(Arrays.asList(scriptEventDungeon()));
             scripts.addAll(Arrays.asList(scriptEventSidun()));
             scripts.addAll(Arrays.asList(scriptMakeFavorite()));
@@ -351,7 +357,7 @@ public class ScriptBuilder {
             scripts.addAll(Arrays.asList(scriptItemGreen()));
             // 기란던전제외
             //if( i < numIterations)
-                scripts.addAll(Arrays.asList(scriptGiran("wait_hour_4_4")));
+                scripts.addAll(Arrays.asList(scriptGiran("wait_hour_4")));
         }
 
         // 모든 반복 종료 후 1번 캐릭터로 전환
@@ -575,9 +581,9 @@ public class ScriptBuilder {
             "item_change_move_kenmal",
             "wait_sec_10",
             "item_change_find",
-            "wait_sec_2",
+            "wait_sec_5",
             "item_change_choose_1",
-            "wait_sec_2"
+            "wait_sec_5"
         };
     }
 
@@ -590,7 +596,7 @@ public class ScriptBuilder {
             "item_change_move_kenmal",
             "wait_sec_10",
             "item_change_choose_3",
-            "wait_sec_2",
+            "wait_sec_5",
             "item_change_save",
             "wait_sec_10"
         };
@@ -749,6 +755,32 @@ public class ScriptBuilder {
                 config.getReturnHomeKey(),
                 "wait_sec_10",
 
+                "party_orim",
+                config.getReturnHomeKey(),
+                config.getReturnHomeKey(),
+                "wait_sec_2",
+                config.getReturnHomeKey(),
+                "wait_sec_10"
+        };
+    }
+
+    /**
+     * 데스 파던 스크립트
+     */
+    public String[] scriptPadunDeath() {
+        return new String[]{
+                "party_death",
+                config.getReturnHomeKey(),
+                config.getReturnHomeKey(),
+                "wait_sec_10",
+        };
+    }
+
+    /**
+     * 오림 파던 스크립트
+     */
+    public String[] scriptPadunOrim() {
+        return new String[]{
                 "party_orim",
                 config.getReturnHomeKey(),
                 config.getReturnHomeKey(),

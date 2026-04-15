@@ -163,7 +163,7 @@
 
   "groups": {
     "subGroup": {
-      "macroScripts": ["sub_countermagic"],
+      "macroScripts": ["sub_countermagic","event_match_blue","event_match_red"],
       "resultScripts": ["sub_world","sub_world_statue",
         "sub_1_groupA",
         "sub_1_groupB",

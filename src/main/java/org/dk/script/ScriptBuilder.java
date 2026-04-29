@@ -88,8 +88,8 @@ public class ScriptBuilder {
 
             scripts.addAll(Arrays.asList(scriptSidun()));
 
-            //8번부터 파던 진행
-            if( i > 8-getStartNum() )
+            //7번부터 파던 진행
+            if( i > 7-getStartNum() )
                 scripts.addAll(Arrays.asList(scriptPadunDeath()));
 
             scripts.addAll(Arrays.asList(scriptPadunOrim()));
